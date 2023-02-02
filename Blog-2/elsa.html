@@ -1,0 +1,158 @@
+<p>
+    A preview feature of Java 19 includes <a href="https://openjdk.org/jeps/425"
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_blank">Virtual Threads</a>, a compact
+    implementation of Java threads. High-throughput concurrent applications can be written, maintained, and observed
+    with a great deal fewer work thanks to virtual threads. The well-known thread-per-request style of programming is
+    given fresh life by virtual threads, enabling it to scale with almost ideal hardware use.
+</p>
+
+<p>
+    Virtual Threads can be supported by existing applications and libraries with no modification because they are fully
+    compatible with the current <strong><em>"Thread"</em></strong> API. By supporting the current debugging and
+    profiling interfaces, virtual threads make it simple to troubleshoot, debug, and profile virtual threads using
+    current tools and methods.
+</p>
+
+<p>
+    The primary output of OpenJDK's <a href="https://wiki.openjdk.org//display/loom/Main"
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_blank">Project Loom</a>, virtual threads
+    are introduced to the Java platform for the first time in Java 19; this is the key deliverable. This is
+    simultaneously one of the biggest improvements to Java in a long time and a hardly noticeable change. Virtual
+    Threads radically alter how the Java runtime communicates with the underlying operating system, removing major
+    barriers to scalability, but they make only minor adjustments to how we create and manage concurrent systems.
+    Virtual Threads behave almost identically to the threads we are used to, and there is hardly any additional API
+    surface. There is more unlearning than learning to be done to use virtual threads successfully.
+</p>
+
+<h2>Virtual Threads</h2>
+<p>
+    A different Java.lang.Thread implementation is virtual threads. Threads that use Java's garbage-collected heap to
+    store their stack frames rather than the large operating system-allocated memory chunks. The memory footprint for a
+    virtual thread starts at just a few hundred bytes and extends and contracts automatically as the call stack grows
+    and shrinks, so we don't have to anticipate how much stack space a thread would need or make a general estimate for
+    all threads.
+</p>
+<p>
+    Platform threads, which remain the unit of scheduling, are the only threads that the operating system is aware of.
+    The Java runtime makes arrangements for code to execute on a virtual thread by mounting it on a platform thread
+    known as a carrier thread. When a virtual thread is mounted, the necessary stack frames are temporarily copied from
+    the heap to the carrier thread's stack, and the virtual thread borrows the carrier stack while it is mounted. Code
+    running in a virtual thread can be unmounted from the carrier thread, and any updated stack frames copied are
+    returned to the heap, enabling the carrier thread to work on anything else when it might otherwise block due to IO,
+    locking, or other resource availability (such as running another virtual thread.) Virtual Threads are unmounted from
+    their carriers rather than blocking when a blocking operation on them is encountered in almost all of the blocking
+    places in the JDK.
+</p>
+<p>
+    There is not much to understand to use virtual threads because they are just threads and have minimal additional API
+    surface of their own. But to use them successfully, there are quite a few things we need to relearn.
+</p>
+
+<ul class="ssq-blog-ul">
+    <li><strong>Everyone Out of the Pool.</strong></li>
+    <li><strong>Overuse of ThreadLocal</strong></li>
+</ul>
+
+<h3>Everyone Out of the Pool</h3>
+<p>
+    The patterns of thread production are the hardest to unlearn. Java developers have learned that it is generally far
+    better to let <strong><em>ExecutorService</em></strong> manage and pool threads in a policy-driven way than to
+    create threads directly. Java 5 introduced the java.util.concurrent package, which includes the
+    <strong><em>ExecutorService</em></strong> framework. But pooling turns into an antipattern when dealing with virtual
+    threads. (We don't have to stop using <strong><em>ExecutorService</em></strong> or the encapsulation of policy that
+    it offers; we can acquire an <strong><em>ExecutorService</em></strong> that produces a new virtual thread per task
+    by using the new factory function
+    <a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/concurrent/Executors.html#newVirtualThreadPerTaskExecutor()"
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_blank">
+        Executors::newVirtualThreadPerTaskExecutor
+    </a> )
+</p>
+<p>
+    Because they are so lightweight, virtual threads can be created even for brief operations, and attempting to reuse
+    or recycle them is pointless. Virtual Threads were created specifically to handle brief tasks like an HTTP fetch or
+    a JDBC query.
+</p>
+<h3>Overuse of ThreadLocal</h3>
+<p>
+    As a result of virtual threads, libraries could also need to modify how they use
+    <strong><em>ThreadLocal</em></strong>. The usage of <strong><em>ThreadLocal</em></strong> to cache resources that
+    are expensive to allocate, not thread-safe, or just to prevent repeated allocation of a frequently used object is
+    one of its occasional (and, some would argue, misuse) applications (e.g., ASM uses a
+    <strong><em>ThreadLocal</em></strong> to maintain a per-thread char[] buffer, used for formatting operations.) This
+    is an ad-hoc kind of pooling; if these objects need to be pooled, they should be pooled explicitly. A
+    <strong><em>ThreadLocal</em></strong> is used to amortize the production cost of a costly resource across numerous
+    activities that might execute in the same thread.
+</p>
+
+<h2>API & Platform Changes</h2>
+<p>
+    A preview feature is virtual threads and the accompanying APIs. This means that to support virtual threads,
+    the-enable-preview switch is required.
+</p>
+<p>
+    There is no new VirtualThread base type because virtual threads are just java.lang.Thread implementations. But there
+    are several new API points for creating and analyzing threads that have been added to the Thread API.
+    A new <a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/lang/Thread.Builder.html"
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_blank">Thread.Builder</a>
+    class, new factory methods for <strong><em>Thread::ofVirtual</em></strong> and
+    <strong><em></em>Thread::ofPlatform,</em></strong> and <strong><em>Thread::startVirtualThread</em></strong> to start
+    a task on a virtual thread in one step are all included. Although they are only used to create platform threads, the
+    old thread builders continue to function as before.
+</p>
+<p>
+    Virtual and platform threads behave differently in a few specific ways. Virtual threads are always daemon threads;
+    they are unaffected by the Thread::setDaemon function. Virtual threads have primacy at all times. NORM PRIORITY,
+    which is unchangeable. Some (defective) legacy techniques, such as ThreadGroup and the Thread methods halt, suspend,
+    and delete, are not supported by virtual threads. A thread's virtuality can be determined using the function
+    Thread::isVirtual.
+</p>
+
+<h2>Preparing the JDK</h2>
+<p>
+    Although Project Loom's major output is virtual threads, the JDK has undergone several enhancements to guarantee
+    that programs will use virtual threads effectively.
+</p>
+<ul class="ssq-blog-ul">
+    <li style="padding-bottom: 5px !important;">
+        <strong>New socket implementations:</strong>
+        To better support virtual threads, JEP 353 <em>(Reimplement the Legacy Socket API)</em> and JEP
+        373 <em>(Reimplement the Legacy DatagramSocket API)</em> replaced the versions of Socket,
+        ServerSocket, and DatagramSocket (including making blocking methods interruptible in virtual threads.)
+    </li>
+    <li style="padding-bottom: 5px !important;">
+        <strong>Virtual-thread-awareness:</strong>
+        Virtual threads are now known to almost all blocking sites in the JDK, and they will unmount a virtual thread
+        instead of stopping it.
+    </li>
+    <li style="padding-bottom: 5px !important;">
+        <strong>Revisiting the use of ThreadLocal:</strong>
+        Because of the anticipated shifting thread usage patterns, many ThreadLocal uses in the JDK were revised.
+    </li>
+    <li style="padding-bottom: 5px !important;">
+        <strong>Revisiting locking:</strong>
+        Critical intrinsic locks were replaced with ReentrantLock because acquiring an intrinsic lock (synchronised)
+        currently pins a virtual thread to its carrier. (In the future, the relationship between virtual threads and
+        intrinsic locks will likely be enhanced.)
+    </li>
+    <li style="padding-bottom: 5px !important;">
+        <strong>Improved thread dumps:</strong>
+        Greater control over thread dumps is offered to filter out virtual threads, group relevant virtual threads
+        together, or create dumps in machine-readable forms that can be post-processed for improved observability.
+    </li>
+</ul>
+<p>
+    Even while virtual threads are Project Loom's major focus, several Loom side projects improve on virtual threads.
+    The first is a straightforward framework for organized concurrency, which provides a potent way to manage and
+    coordinate collaborating teams of virtual threads. Extent local variables are another option; they are comparable to
+    thread locals but are better suited (and more efficient) for use with virtual threads.
+</p> <br /><br /><br />
+
+<p>
+    <strong>
+        Thanks for reading! In this blog, we focus on how to use Java Virtual Threads and their Importance in Java
+        Programming. If you are looking for Java development services we got your back, at
+        <a href="https://sanesquare.com/" style="color: rgb(9, 55, 203); font-size: unset !important;"
+            target="_self">Sanesquare Technologies</a> we provide the best Java development services. Feel free to
+        contact us to get a free consultation.
+    </strong>
+</p>

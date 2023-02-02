@@ -1,0 +1,257 @@
+<p>
+    This blog explains the differences between the constructor inside a TypeScript class vs OnInit and how to make the
+    best decision. If you're just getting started with Angular or have been using it for a long, you might have concerns
+    like these:
+</p>
+
+<p>
+    Should I bind data and inject dependencies into the constructor? When does ngOnInit be used? What distinguishes a
+    constructor from OnInit in Angular?
+</p>
+
+<p>
+    I'm here to address those questions because they are valid. Before we start, it's essential to understand that a
+    constructor is not an <a href="https://www.sanesquare.com/services/mobile-app-development.html"
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_self">Angular feature</a>.
+</p>
+<p>Before moving on to the ngOnInit lifecycle hook, let's discuss constructors.</p>
+
+<h3>What is a Constructor?</h3>
+<p>
+    A constructor is a unique method that is called each time we build a new object. In general, it is used to
+    initialize the members of the class. It is not an Angular feature, but rather an attribute of the class
+    (typescript), a principle in object-oriented design.
+</p>
+<p>The purpose of a constructor will be clear to you if you have experience with object-oriented programming.</p>
+
+<p>When a class instance is formed, a constructor is called first:</p>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    class Pizza {
+        constructor() {
+            console.log('Hello world!');
+        }
+    }
+        
+    // create a new instance, constructor is 
+    // then invoked by the *JavaScript Engine*!
+    const pizza = new Pizza();
+    </pre>
+</div><br />
+
+<h3>Constructors in Angular</h3>
+<p>
+    When using Dependency Injection, we give dependencies using constructors, which are important in Angular. When a
+    class is formed, Angular examines the
+    <a href="https://en.wikipedia.org/wiki/Constructor_(object-oriented_programming)"
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_blank">Constructors</a> and searches for
+    providers that match the types of arguments in the Constructors. They are then bound to the class after being
+    located.
+</p>
+<p>You probably did something similar, injecting a different class into the constructor:</p>
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-1')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-1"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    import { Component } from '@angular/core';
+    import { ActivatedRoute } from '@angular/router';
+    
+    @Component({...})
+    class PizzaComponent {
+        constructor(
+            private route: ActivatedRoute
+        ) {}
+    }
+    </pre>
+</div><br />
+
+<p>
+    By doing so, ActivatedRoute will be bound to the class and accessible through the component class's this .route
+    method.
+</p>
+<p>
+    A constructor, in my opinion, is where you should wire up your dependencies and leave it as simple as possible. It
+    is more difficult to test the constructor because Angular does not directly call it.
+</p>
+<p style="margin-top: 15px;">
+    The addition of the ngOnInit lifecycle hook, which fires as soon as the Angular component is prepared, addresses the
+    fact that Angular has no control over when this constructor is called.
+</p>
+<p>
+    A class's lifecycle hooks are merely methods that define significant moments in time. OnInit, OnDestroy, and Changes
+    are a few of the lifecycle hooks offered by Angular.
+</p>
+<p>
+    A quick fact for you before we continue: the OnChanges lifecycle hook is called first when an Angular component is
+    built.
+</p>
+<p>
+    The OnInit hook is the following lifecycle hook to be called.
+    What does the OnInit lifecycle hook offer us and when should we use it because of this?
+</p>
+
+<h3>OnInit Lifecycle Hook</h3>
+<p>
+    Angular components can expand in size and complexity, which frequently necessitates the injection of several
+    dependencies, the declaration of properties, and the binding of observables. A constructor would be the best
+    location for injection but not to handle the wiring. Angular calls the lifecycle hooks throughout the change
+    detection cycle but not the constructor until after the component tree has been assembled.
+</p>
+<p>
+    This is where <a href="https://angular.io/api/core/OnInit"
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_blank">ngOnInit</a> comes in. After
+    importing the OnInit interface and utilizing the implements to provide us with some type of safety, we can declare
+    ngOnInit as a method:
+</p>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-2')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-2"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    import { Component, OnInit } from '@angular/core';
+    import { ActivatedRoute } from '@angular/router';
+    
+    @Component({...})
+    class PizzaComponent implements OnInit {
+        constructor(
+            private route: ActivatedRoute
+        ) {}
+        
+        ngOnInit() {
+            // subscribe when OnInit fires
+            this.route.params.subscribe(params => {
+                // now we can do something!
+            });
+        }
+    }
+    </pre>
+</div><br />
+<p>
+    Unit testing is made simpler by this method because we have control over the lifecycle hook. The ngOnInit lifecycle
+    hook is the ideal location for adding more intricate logic and initializing the component.
+</p>
+<p>What actually occurs when Angular instantiates the component and calls ngOnInit is as follows:</p>
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-3')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-3"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    const instance = new PizzaComponent();
+
+    // Angular calls this when it's ready
+    instance.ngOnInit();
+    </pre>
+</div><br />
+<p>
+    Wiring up observables, communicating with services, and making any necessary requests are all easily accomplished
+    with the ngOnInit lifecycle hook.
+</p>
+<p>
+    Another incredibly significant feature of ngOnInit is that Angular calls it precisely when the component's @Input()
+    properties are prepared:
+</p>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-4')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-4"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    @Component({...})
+    class PizzaSingleComponent implements OnInit {
+        @Input() pizza: Pizza;
+    
+        constructor() {
+            console.log(this.pizza); // undefined
+        }
+        
+        ngOnInit() {
+            console.log(this.pizza); // { name: 'Pepperoni', price: 399 }
+        }
+    }
+    </pre>
+</div><br />
+<p>
+    The initial pass of Angular's Change Detection is also included in this ngOnInit phase, so any @Input() properties
+    are available there but are purposefully undefined in the constructor.
+</p>
+<p>
+    The fact that the constructor is invoked by the JavaScript engine while ngOnInit() is called by Angular is the first
+    and primary difference between the two methods.
+</p>
+
+<h3>When to use ngOnInit & the constructor in Angular</h3>
+<p>
+    The constructor is used for dependency injection and initializing class members in object-oriented programming.
+</p>
+
+<h3>Implementing constructors in Angular</h3>
+<p>
+    In Angular, dependencies are introduced into the component class using the constructor. And make the constructor as
+    clear as you can. If the constructor logic is straightforward, unit testing can be quite simple.
+</p>
+
+<h3>Use of the ngOnInit() method in Angular</h3>
+<p>
+    As mentioned, Angular calls ngOnInit after building the component DOM. Additionally, we will inject all necessary
+    dependencies and processed input bindings using constructors.
+</p>
+<p>Now that everything is set up, we can add the actual logic to the ngOnInit() method.</p>
+<p>
+    Even if the logic doesn't need DI, DOM, or input bindings, it's usual practice to utilize ngOnInit to perform actual
+    work.
+</p>
+
+<h3>Constructor vs. ngOnInit in Angular</h3>
+
+<table class="ssq-blog-table">
+    <tr>
+        <th style="text-align: center;">ngOnInit</th>
+        <th style="text-align: center;">Constructor</th>
+    </tr>
+    <tr>
+        <td>One Angular life cycle hook technique</td>
+        <td>Angular has nothing to do with the typescript</td>
+    </tr>
+    <tr>
+        <td>The additional Typescript feature to the class's prototype has nothing to do with Angular ngOnInit.</td>
+        <td>Constructor is changed to a function that has the same name as the newly generated class.</td>
+    </tr>
+    <tr>
+        <td>Called by Angular</td>
+        <td>By Javascript Engine</td>
+    </tr>
+    <tr>
+        <td>When a component is initialized, Angular calls this method. </td>
+        <td>When creating a class object, the Constructor is automatically invoked.</td>
+    </tr>
+    <tr>
+        <td>This is actual business logic in practice</td>
+        <td>Deployed to inject dependencies</td>
+    </tr>
+    <tr>
+        <td>When the call is made, everything is arranged</td>
+        <td>Not every aspect of a component is initialized at the time it is invoked.</td>
+    </tr>
+</table>
+
+<p>
+    Despite their subtlety, the variations are significant. You are now prepared to select the appropriate OnInit action
+    as we have covered the constructor role in detail. Our use of OnInit ensures that bindings are accessible and usable
+    to the fullest extent.
+</p><br /> <br />
+
+<p>
+    <strong>
+        Thanks for reading! In this blog we attempted to explain the “ difference between Constructor and ngOnInit in
+        Angular”, and we hope that everyone will be able to understand what we were trying to say. Feel free to contact
+        us if you need help using <a href="https://www.sanesquare.com/index.html"
+            style="color: rgb(9, 55, 203); font-size: unset !important;" target="_self">Angular</a> or have any
+        problems.
+    </strong>
+</p>

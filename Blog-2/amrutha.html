@@ -1,0 +1,156 @@
+<p>
+    Spring Boot framework is based on java that is built on the Spring framework. Additionally, it is a Java-based
+    open-source framework for developing micro Services. The Pivotal Team created it, and it is used to create
+    independent, production-ready spring apps. Without needing to create a lot of boilerplate code, Spring Boot helps
+    you quickly construct <a href="https://www.sanesquare.com/services/mobile-app-development.html"
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_self">Java Applications</a>
+    by taking an opinionated perspective of the Spring platform. Spring setup is
+    typically not necessary for Spring Boot projects.
+</p>
+
+<h2>Advantages of Spring Boot</h2>
+<ul class="ssq-blog-ul">
+    <li style="padding-bottom: 5px !important;">The capacity for developing a standalone application.</li>
+    <li style="padding-bottom: 5px !important;">No XML setup is required.</li>
+    <li style="padding-bottom: 5px !important;">There is no requirement to deploy war files.</li>
+    <li style="padding-bottom: 5px !important;">Spring-based application development is quick and simple.</li>
+    <li style="padding-bottom: 5px !important;">Helping an application directly embed Tomcat, Jetty, or Undertow.</li>
+    <li style="padding-bottom: 5px !important;">Fewer lines of source codes.</li>
+    <li style="padding-bottom: 5px !important;">More built-in capabilities.</li>
+    <li style="padding-bottom: 5px !important;">Simple to maintain and set up.</li>
+</ul>
+
+<h2>How does Spring Boot work?</h2>
+<p>
+    By utilizing the <strong><em>@EnableAutoConfiguration</em></strong> annotation, Spring Boot configures your
+    application automatically based on the dependencies you have added to the project. For instance, Spring Boot creates
+    an in-memory database if the MySQL database is on your classpath but you haven't set up any database connections.
+</p>
+<p>
+    The class with the <strong><em>@SpringBootApplication</em></strong> annotation and the main method serves as the
+    spring boot application's entry point.
+</p>
+
+<p>
+    Using the <strong><em>@ComponentScan</em></strong> annotation, Spring Boot automatically scans every component
+    included in the project.
+</p>
+
+<h2>Spring Boot Features</h2>
+<h3>
+    <strong>1. Autoconfiguration</strong>
+</h3>
+<p>
+    Consider that you want to build a new library that you can utilize across your program. Even if you are able to
+    create and integrate the code, you could still need to perform a lot of manual settings. The autoconfiguration
+    function offered by Spring Boot enters the picture at this point.
+</p>
+<p>
+    Spring Boot gives you the option to select dependencies for your project when you create a new one. These are the
+    dependencies that the autoconfiguration feature uses to load particular preset configurations. The Auto
+    Configuration class is strengthened by <strong><em>@Conditional</em></strong> annotations that turn on beans under
+    specific conditions. When an application first launches using Spring Boot, these conditionals are evaluated.
+</p>
+
+<p>
+    You must annotate your code with <strong><em>@EnableAutoConfiguration</em></strong> or
+    <strong><em>@SpringBootApplication</em></strong> in order to use autoconfiguration.
+</p>
+
+<p>
+    A spring-named file. During startup, factories automatically load. There are numerous configuration classes
+    referenced in it. The file may be found in the dependency org.spring
+    framework.boot:spring-boot-META-INF/spring.factories autoconfigures directory.
+</p>
+<p>
+    Many classes are accessible for use, but you can eliminate them by utilizing
+    <strong><em>@EnableAutoConfiguration's</em></strong> exclude feature.
+</p>
+
+<h3>
+    <strong>2. Spring Initializer</strong>
+</h3>
+<p>
+    Your Spring Boot projects can be bootstrapped using the utility Spring Initializr. Project creation is made possible
+    by this Spring Boot functionality via cURL, various IDEs, and its own Spring CLI. Although it doesn't produce any
+    application code, it does offer a simple project structure. Just write the application code, that's all.
+</p>
+<p>
+    You can choose a project, the programming language of your choice, and add dependencies like dev tools, actuator,
+    web, etc. with the help of Spring Initializr. After choosing one of the available options on the Spring Initializr
+    screen, creating a project only requires hitting the Generate button. When choosing a Gradle or Maven project, for
+    instance, the produced project includes the pom.xml or the Gradle build specification. A class with a main () method
+    is also included to help bootstrap the program. There is an application context that makes use of the empty
+    properties file and Spring Boot auto-configuration so that you can add configuration properties.
+</p>
+
+<h3>
+    <strong>3. Externalized Configuration</strong>
+</h3>
+<p>
+    All configuration settings in Spring Boot applications are read from the application.properties or application.yaml
+    resource file. However, there may be instances where you want to transfer your settings to a different environment.
+    At this point, you might need to configure these properties, in which case your application will need to be rebuilt
+    and tested again across all environments. You will also need to redeploy your application in the production
+    environment each time a change is made.
+</p>
+<p>
+    Spring Boot gives you the option to externalize your configuration to get around this issue. Utilizing the
+    application code from one environment in another is known as externalizing the configuration. You can reuse your
+    code in different settings by externalizing your setup with Spring Boot. These files can be used to externalize
+    configuration:
+</p>
+<ul class="ssq-blog-ul">
+    <li style="padding-bottom: 5px !important;">
+        <a href="https://en.wikipedia.org/wiki/YAML" style="color: rgb(9, 55, 203); font-size: unset !important;"
+            target="_blank">YAML Files</a>
+    </li>
+    <li style="padding-bottom: 5px !important;">Environment Variables</li>
+    <li style="padding-bottom: 5px !important;">Properties Files, etc.</li>
+</ul>
+
+<p>
+    It's possible that you'll need to comprehend what is occurring inside the application in order to troubleshoot it
+    and analyze the logs. For instance, which beans are configured, how frequently a certain service was used, or how
+    frequently a certain service failed. The window into your application is the actuator. You can use the Actuator
+    framework to inspect your application health-check endpoints without having to install any additional software or
+    tools. Tracking data such as metrics, information, and other things are made simple using Spring Actuator.
+</p>
+<p>
+    Actuator endpoints allow you to interact with your application in addition to monitoring. There are a number of
+    endpoints already included in Spring Boot, and you can also add your own actuator implementations.
+</p>
+
+<h3>
+    <strong>4. Spring CLI</strong>
+</h3>
+<p>
+    To create a Spring application quickly, utilize the Spring Boot CLI command-line tool. You can code utilizing your
+    understanding of Java and the Spring CLI without having to continuously develop reusable code because Groovy scripts
+    can be executed. Utilizing the starter component, which resolves dependencies, allows you to begin a new project.
+</p>
+<p>
+    A few commands provided by this Spring Boot feature can be used to launch development on a more conventional Java
+    project using the Initializr. For instance, the init command gives the Initializr an interface via which to build a
+    base project. The project structure is present in the final zip file, and you can put your own configuration there.
+    If not, you can also modify the code.
+</p>
+<p>
+    With its scalable and effective toolkit for creating Spring applications with a microservices architecture, Spring
+    Boot has become a crucial component of the Java ecosystem. It uses straightforward default settings for unit and
+    integration tests, which accelerates the development and deployment procedures. Additionally, Spring Boot saves
+    developers time and energy by enabling them to create strong apps with clear and secure setups without having to
+    spend a lot of time and energy learning the nuances of Spring.
+</p><br /><br /><br />
+
+
+
+
+<p>
+    <strong>
+        Thanks for reading! If you are looking for Java development services we got your back. At Sanesquare
+        Technologies we provide the most <a href="https://sanesquare.com/"
+            style="color: rgb(9, 55, 203); font-size: unset !important;" target="_blank">
+            comprehensive Java Development Services.</a> Contact us if you would like a free consultation.
+    </strong>
+</p>

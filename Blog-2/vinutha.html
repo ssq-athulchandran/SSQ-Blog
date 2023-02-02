@@ -1,0 +1,116 @@
+<p>
+    <a href="https://www.javatpoint.com/java-8-features" style="color: rgb(9, 55, 203); font-size: unset !important;"
+        target="_blank">Java 8</a> is one of the Long Term Support (LTS) versions released in 2014. Because Java
+    releases new versions every two years, why do the vast majority of programmers continue to use Java 8?There could be
+    numerous reasons for this. Streams, functional programming, and lambdas are some of the highlights of Java 8.
+</p>
+<h3>Streams</h3>
+<p>
+    The Streams API was introduced to perform various operations on bulk data in a more efficient way. The Stream API
+    will allow sequential as well as parallel execution. The Collection interface has stream() and parallelStream()
+    methods to generate sequential and parallel streams.
+</p>
+
+<h3>Java Time API</h3>
+<p>
+    Many shortcomings in java.util.Date and java.util.Calendar are addressed in the java.time package. LocalTime,
+    LocalDate, and LocalDateTime, ZonedDateTime, Period, and Duration are various classes in the java.time package.
+</p>
+
+<h3>Lambda Expression</h3>
+<p>
+    The lambda expression assists us in writing functional code. It uses an expression to provide a clear and concise
+    way to implement the
+    <a href="https://www.javacodemonk.com/single-abstract-method-sam-and-functional-interface-in-java-44f22fc3"
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_blank">SAM interface</a> (Single Abstract
+    Method). It is very useful in collection libraries for iterating, filtering, and extracting data.
+</p>
+
+<h3>Functional Interface</h3>
+<p>
+    A functional interface is one with exactly one abstract method. Single Abstract Method (SAM) Interface is another
+    name for a functional interface. We usually mark a functional interface with the <em>@FunctionalInterface</em>
+    annotation, but it is not mandatory to do so. The <em>@FunctionalInterface</em> annotation prevents the creation of
+    more than one abstract method.
+</p>
+
+<h3>Optional</h3>
+<p>
+    Optional is a new class introduced in Java 8. It is a public final class that is used in Java applications to handle
+    NullPointerExceptions. To use this class, you must import the java.util package. It provides methods for determining
+    the presence of a value for a specific variable.
+</p>
+
+<h3>Collectors</h3>
+<p>
+    Collectors is a class that is a subclass of Object.It supports reduction operations such as grouping elements into
+    collections, summarizing elements based on various criteria, and so on. They are often used with Stream to collect
+    the filtered result set into a new collection.
+</p>
+
+<h3>Default Interface Methods</h3>
+<p>
+    In a typical abstraction-based design, where an interface has one or more implementations, if one or more methods
+    are added to the interface, all implementations are forced to implement them as well. Otherwise, the design will
+    simply fail.
+</p>
+<p>
+    Default methods are preceded with the default keyword and are implicitly public like other interface methods, but
+    the difference is that a default method will have an implementation. Any addition to the already defined behaviour
+    of an interface can be satisfied using default methods.
+</p>
+
+<h3>Static Interface Method</h3>
+<p>
+    In Java 8, we can also define and implement static methods on interfaces. Like the static method in classes, the
+    interface static method can be called using the interface name followed by the method name. A static method can be
+    called from within another static or default method.
+</p>
+
+<h3>StringJoiner</h3>
+<p>
+    StringJoiner is a new java.util package class that allows you to create new strings from character sequences and
+    delimiters.We can also append prefixes and suffixes to the string. The StringJoiner class also provides various
+    methods like merge(), length(), etc.
+</p>
+
+<h3>Method Reference</h3>
+<p>
+    In Java 8, a new feature called "method reference" is introduced. Method references are used to refer to functional
+    interface methods. It is a short and simple lambda expression. Every time you use a lambda expression to simply
+    refer to a method, you can replace it with a method reference.
+</p>
+
+<p>Method references can be of three types :</p>
+<ul class="ssq-blog-ul">
+    <li>
+        Static method reference <br />
+        <p style="padding-left: 8px;">ContainingClass::staticMethodName</p>
+    </li>
+
+    <li>
+        Instance method reference <br />
+        <p style="padding-left: 8px;">ContainingObject::instanceMethodName</p>
+    </li>
+
+    <li>
+        Constructor reference <br />
+        <p style="padding-left: 8px;">ClassName::new</p>
+    </li>
+</ul>
+
+<h3>forEach</h3>
+<p>
+    Java 8 provides the forEach method to iterate over elements in a collection. It is represented by the Stream and
+    iterable interfaces.forEach basically performs the given action for each element of the iterable until all elements
+    have been processed or the action throws an exception.
+</p>
+
+<h3>Conclusion</h3>
+<p>
+    All of these features, combined with Java's existing strengths (such as platform independence and broad ecosystem),
+    have made Java 8 an attractive choice for many developers and contributed to its adoption. If you need more
+    clarification about the Java 8, you can feel free to contact <a href="https://sanesquare.com/"
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_self">Sanesquare Technologies</a> for more
+    details.
+</p>

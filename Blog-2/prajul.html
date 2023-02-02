@@ -1,0 +1,170 @@
+<p>
+    Software Development Life Cycle (SDLC) has various phases for the development of software requirement analysis,
+    Communication, Designing, Coding, Testing, and Deployment and software testing plays a vital role in the software
+    development to deploy efficiently. <a href="https://www.sanesquare.com/services/quality-assurance-and-testing.html"
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_blank">Software Testing</a>
+    makes sure that the product that is to be delivered fulfills the requirements of the client or for what purpose it
+    was being designed. Software testing is achieved in two ways either manually or automatically.
+    <a href="https://en.wikipedia.org/wiki/JUnit" style="color: rgb(9, 55, 203); font-size: unset !important;"
+        target="_blank">JUnit</a> and <a href="https://en.wikipedia.org/wiki/TestNG"
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_blank">TestNG</a> are the Java frameworks
+    for unit testing that are considered to be the most popular and widely used, java platform supports a variety of
+    testing frameworks that can be used for unit testing.
+</p>
+
+<h2>Unit Testing</h2>
+<p>
+    Unit testing is to isolate each part of the program and show that the individual parts are correct and provide a
+    strict, written contract that the piece of code must satisfy. The unit testing alerts the development team of the
+    problem before handing the code off to testers or clients, potential problems are caught early in the development
+    process. Maintaining and writing unit tests can be made faster by using parameterized tests and these are supported
+    by TestNG, JUnit, and its .Net counterpart, XUnit.
+</p>
+
+<h4>
+    <strong>Unit Testing Tools: </strong>
+</h4>
+<ul class="ssq-blog-ul">
+    <li>TestNG</li>
+    <li>JUnit</li>
+    <li>NUnit</li>
+    <li>Mockito</li>
+    <li>PHPUnit</li>
+</ul>
+
+<h3>Advantages Of Unit Testing</h3>
+<ul class="ssq-blog-ul">
+    <li>It makes the process of debugging easier.</li>
+    <li>
+        Unit Testing forces better code and design whether you are using C#, Java, Python, JavaScript, or Php and it
+        means you have well-defined code with high cohesion.
+    </li>
+    <li>Unit Testing is essentially doing quality assurance of the code.</li>
+    <li>
+        Unit Testing allows the refactoring of code and makes integration simpler it finds changes and helps maintain
+        and adjust code, reducing bugs and defects, and verifying the accuracy of each unit.
+    </li>
+    <li>
+        Unit Testing helps find problems and resolve them before further testing so they won’t impact other bits of code
+        and includes bugs in a programmer's execution and issues with a specification for the unit itself.
+    </li>
+</ul>
+
+<h3>Disadvantages of Unit Testing</h3>
+<ul class="">
+    <li>
+        Test code should be fairly simple and this testing method is still more work and more code which means more
+        hours and more cost.
+    </li>
+    <li>
+        By definition, unit testing focuses on a single piece of software, As a result, it is incapable of detecting
+        integration or system-wide issues.
+    </li>
+    <li>
+        May not be possible to test a unit for every input scenario that will occur in a real-world environment.
+    </li>
+    <li>
+        Evaluating all execution paths is not possible in unit testing, So testing cannot catch every error in a
+        program.
+    </li>
+    <li>Must maintain rigorous documentation.</li>
+</ul>
+
+<h2>JUnit</h2>
+<p>
+    JUnit is an open-source framework used for writing and executing unit tests in Java programming language. JUnit is
+    one of the best-known unit testing frameworks. This tool helps to enhance the efficiency of the developer, which
+    provides the consistency of the development code and reduces the time of debugging. JUnit provides a basic built-in
+    template so that you may write small, simple test cases in no time and tests help you to write independent modules,
+    thereby bettering the coverage of tests and the quality of the application. It does not support running parallel
+    tests simultaneously.JUnit offers the assertions for testing expected results.
+</p>
+
+<h3>Advantages Of JUnit</h3>
+<ul class="ssq-blog-ul">
+    <li>
+        JUnit is an AWT based and swing graphical test reporting mechanism, and also provides a text-based command line.
+    </li>
+    <li>
+        It's widely adopted by organizations around the world for performing unit testing in Java programming language.
+    </li>
+    <li>
+        JUnit is a standard for testing in Java programming language and it is supported by almost all the IDEs.
+    </li>
+    <li>
+        It's one of the best testing frameworks that can be selected for an efficient testing process.
+    </li>
+</ul>
+
+<h3>Disadvantages Of JUnit</h3>
+<ul class="ssq-blog-ul">
+    <li>JUnit Cannot do dependency testing as opposed to the TestNG framework.</li>
+    <li>JUnit is not suitable for higher-level testing i.e. for large test suites.</li>
+    <li>JUnit can’t create HTML reports of test cases. Use ANT to create HTML test reports in JUnit.</li>
+    <li>JUnit cannot do group testing, Which is available in TestNG.</li>
+</ul>
+
+<h2>TestNG</h2>
+<p>
+    It's a Java framework that facilitates software tests in Java and it runs the tests in classes. TestNG makes classes
+    for corresponding tests and then processes them. TestNG was developed by Cedric Beust. TestNG is capable of
+    supporting more advanced annotation. When it's compared to JUnit, TestNG makes it simpler to write tests and
+    configure them. TestNG uses the same Classes to run all of its tests and manages threads to run procedures, which
+    makes the overall functioning of the checking tests faster and it's also thought of as a flexible tool for
+    performing tests. TestNG framework can be easily integrated with Maven. Jenkins, etc. Annotations used in a TestNG
+    framework are easily understandable. Preconditions annotations, Test annotations, and Postcondition annotations are
+    used in the TestNG.
+</p>
+
+<h3>Advantages Of TestNG over JUnit</h3>
+<ul class="ssq-blog-ul">
+    <li>
+        Grouping: In TestNG, Perform a lot of complex automation testing because of its ability to group test cases and
+        execute the groups. We can not perform group tests in JUnit.
+    </li>
+    <li>
+        Extent Classes: In TestNG, Don’t need to extend any classes. We have to use extended classes in JUnit.
+    </li>
+    <li>
+        Mandatory Annotations: In TestNG, No constraints for any type of mandatory annotations. We have to use mandatory
+        annotations like <em>@BeforeClass</em> and <em>@AfterClass</em> in JUnit.
+    </li>
+    <li>
+        Wider Range of annotations: Wider range of annotations support like <em>@Before/After Suite</em>,
+        <em>@Before/After Test</em>, <em>@Before/After Groups</em>.
+    </li>
+    <li>
+        Dependency Test: In TestNG, Can use the “depends on methods” to perform the dependency test.Doesn't support this
+        feature in JUnit.
+    </li>
+    <li>
+        Parallel Test Execution: Perform parallel test execution if run through XML.Doesn’t support this feature in
+        JUnit.
+    </li>
+    <li>
+        Test Order: TestNG is better than JUnit when test execution is done in a specific order and methods with lower
+        priority values will be executed first.
+    </li>
+    <li>
+        Listeners: TestNG supports various types of listeners and can be used by adding annotations.No mechanism in
+        JUnit to add listeners using annotations.
+    </li>
+</ul>
+
+<h3>Disadvantages Of TestNG</h3>
+<ul class="ssq-blog-ul">
+    <li>TestNG setup is time-consuming.</li>
+    <li>If the project does not require test case prioritization then the TestNG case is of no use.</li>
+    <li>less commonly used compared to JUnit, fewer people were having experience with it.</li>
+</ul><br /> <br />
+
+<h2>Conclusion</h2>
+<p>
+    TestNG and JUnit are annotation based and TestNG is better in terms of ease of use. Both of them provide easy
+    integration with major IDEs and are similar.JUnit is better than TestNG for injecting test methods input data.
+    TestNG and JUnit supports the execution of test cases from the java main method and Both of them are similar in
+    terms of Assertions support. If you want to skip tests based on conditions and execute tests in a specific order
+    then JUnit is better.TestNG listener support is much better than JUnit.We provide TestNG and JUnit services with a
+    team of <a href="https://www.sanesquare.com/" style="color: rgb(9, 55, 203); font-size: unset !important;"
+        target="_self">QA experts</a> at Sanesquare Technologies, If you have any questions or comments, you can contact us.
+</p>

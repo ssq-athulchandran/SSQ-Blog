@@ -1,0 +1,191 @@
+<p>
+    GraphQL is a new API standard was invented and developed by Facebook. GraphQL is intended to improve the
+    responsiveness, adaptability, and developer friendliness of APIs. It was created to optimize RESTful API calls and
+    offers a more flexible, robust, and efficient alternative to REST. It is an open-source server-side technology that
+    is now maintained by a large global community of companies and individuals. It is also an execution engine that acts
+    as a data query language, allowing you to fetch and update data declaratively. <a href="https://graphql.org/"
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_blank">GraphQL</a> makes it possible to
+    transfer data from the server to the client. It allows programmers to specify the types of requests they want to
+    make.
+</p>
+<p>
+    GraphQL servers are available in a variety of languages, including Java, Python, C#, PHP, and others. As a result,
+    it is compatible with any programming language and framework.
+</p>
+<img src="https://d26dzo6cruxhup.cloudfront.net/sanesquare/grapghQl-blog-content.png"
+    alt="Client-Server Architecture of GraphQL" class="ssq-blog-img" width="80%" height="auto"
+    style="margin-top: 0px !important; margin-bottom: 0px !important;">
+<p>For a better understanding, the client-server architecture of GraphQL is depicted above</p>
+
+<ul class="ssq-blog-ul" style="list-style: disc !important;">
+    <li style="padding-bottom: 5px !important;">
+        No JSON is used to write the GraphQL query. A GraphQL query is transmitted as a string to the server then when a
+        client sends a 'POST' request to do so.
+    </li>
+    <li style="padding-bottom: 5px !important;">
+        The query string is received by the server and extracted. The server then processes and verifies the GraphQL
+        query in accordance with the graph data model and GraphQL syntax (GraphQL schema).
+    </li>
+    <li style="padding-bottom: 5px !important;">
+        The GraphQL API server receives the data requested by the client by making calls to a database or other
+        services, much like the other API servers do.
+    </li>
+    <li style="padding-bottom: 5px !important;">
+        The data is then taken by the server and returned to the client as a JSON object.
+    </li>
+</ul>
+
+<h4>
+    <strong>Here are some major GraphQL characteristics: </strong>
+</h4>
+
+<ol class="ssq-blog-ol">
+    <li style="padding-bottom: 5px !important;">Declarative query language, not imperative, is offered.</li>
+    <li style="padding-bottom: 5px !important;">It is hierarchical and focused on the product.</li>
+    <li style="padding-bottom: 5px !important;">
+        GraphQL has excellent type checking. It denotes that inquiries are carried out inside the framework of a
+        specific system.
+    </li>
+    <li style="padding-bottom: 5px !important;">GraphQL queries are encoded in the client rather than the server.</li>
+    <li style="padding-bottom: 5px !important;">It has all the attributes of the OSI model's application layer.</li>
+</ol>
+
+<h4>
+    <strong>GraphQL has three essential parts: </strong>
+</h4>
+
+<ul class="ssq-blog-ol">
+    <li>Query</li>
+    <li>Resolver</li>
+    <li>Schema</li>
+</ul>
+
+<p>
+    <strong>1. Query:</strong><br />
+    The client machine application submitted the Query as an API request. It can point to arrays and support augments.
+    To read or fetch values, use a query. There are two key components to a query:
+</p>
+<p>
+    <strong>a) Field:</strong> A field merely signifies that we are requesting a specific piece of information from the
+    server. The field
+    in a graphQL query is demonstrated in the example below.
+</p>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    query {
+        employee { empId  ename }
+    }
+
+    "data": {
+        "employee”: [ {
+            "empId": 1, 
+            "ename": "Ashok"
+        }, {  
+            "id": "2",  
+            "firstName": "Fred"  
+            }      
+        …] }
+    }
+    </pre>
+</div>
+
+<p>
+    In the above In the GraphQL example above, we query the server for the employee field along with its subfields,
+    empId and ename. The data we requested is returned by the GraphQL server.
+</p>
+<p>
+    <strong>b) Arguments: </strong>As URL segments and query parameters, we can only pass a single set of arguments in
+    REST. A typical REST call to obtain a specific profile will resemble the following:
+</p>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-1')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-1"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    GET /api'employee?id=2 Content-Type: application JSON
+    {
+        "empId": 3, 
+        "ename": "Peter."
+    }
+    </pre>
+</div>
+
+<p>
+    <strong>2. Resolver:</strong><br />
+    Resolvers give instructions on how to translate GraphQL operations into data. They define resolver routines that
+    convert the query to data.
+</p>
+<p>
+    It shows the server the location and method for fetching data for a certain field. Additionally, the resolver
+    distinguishes between API and database schema. The separated information aids in the modification of the
+    database-generated material.
+</p>
+<p>
+    <strong>3. Schema:</strong><br />
+    The heart of GraphQL implementation is a schema. It explains the features that the clients connected to it can use.
+</p>
+<p>
+    The benefits of using GraphQL in an application are summarized below.
+</p>
+<ol class="ssq-blog-ol">
+    <li style="padding-bottom: 5px !important;">It is more precise, accurate, and efficient.</li>
+    <li style="padding-bottom: 5px !important;">GraphQL queries are simple and easy to understand.</li>
+    <li style="padding-bottom: 5px !important;">Because it uses a simple query, GraphQL is best suited for microservices
+        and complex systems.</li>
+    <li style="padding-bottom: 5px !important;">It makes it easier to work with large databases.</li>
+    <li style="padding-bottom: 5px !important;">Data can be retrieved with a single API call.</li>
+    <li style="padding-bottom: 5px !important;">GraphQL does not have over-fetching or under-fetching issues.</li>
+    <li style="padding-bottom: 5px !important;">GraphQL can be used to discover the schema in the appropriate format.
+    </li>
+    <li style="padding-bottom: 5px !important;">GraphQL provides extensive and powerful developer tools for query
+        testing and documentation.</li>
+    <li style="padding-bottom: 5px !important;">GraphQL automatically updates documentation in response to API changes.
+    </li>
+    <li style="padding-bottom: 5px !important;">GraphQL fields are used in multiple queries that can be shared and
+        reused at a higher component level.</li>
+    <li style="padding-bottom: 5px !important;">You have control over which functions are exposed and how they operate.
+    </li>
+    <li style="padding-bottom: 5px !important;">It is suitable for rapid application prototyping.</li>
+</ol>
+
+<p>
+    GraphQL can be used in all types of mobile and web applications across industries, verticals, and categories that
+    require data from multiple sources, real-time data updates, and offline capabilities. Here is some application that
+    benefits greatly from GraphQL development:
+</p>
+
+<ol class="ssq-blog-ol">
+    <li style="padding-bottom: 5px !important;">It offers Relay as well as other client frameworks.</li>
+    <li style="padding-bottom: 5px !important;">GraphQL assists you in improving the performance of your mobile app.
+    </li>
+    <li style="padding-bottom: 5px !important;">It can reduce the problem of over fetching to reduce server-side cloud
+        service and client-side network usage.
+    </li>
+    <li style="padding-bottom: 5px !important;">It can be used when the client application needs to specify which fields
+        in a long query format are required.
+    </li>
+    <li style="padding-bottom: 5px !important;">GraphQL can be fully utilized when adding functionality to an existing
+        or old API.</li>
+    <li style="padding-bottom: 5px !important;">It is used to simplify complicated APIs.</li>
+    <li style="padding-bottom: 5px !important;">The mix-and-match façade pattern, which is popular in object-oriented
+        programming.</li>
+    <li style="padding-bottom: 5px !important;">When you need to combine data from multiple sources into a single API.
+    </li>
+    <li style="padding-bottom: 5px !important;">GraphQL can be used as an abstraction on an existing API to specify
+        response structure based on user
+        requirements.</li>
+</ol>
+
+<p>
+    In this blog, I’ve attempted to explain the significance of GraphQL it is a new technology that allows developers to
+    create scalable APIs that are not constrained by the limitations of REST APIs. It allows developers to use an API to
+    easily describe, define, and request specific data. Please let us know what you think of GraphQL. Do you have any
+    further questions? Please do not hesitate to <a href="https://sanesquare.com/contact-us.html"
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_self">contact us</a>. We will gladly
+    assist you.
+</p>

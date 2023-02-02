@@ -1,0 +1,460 @@
+<p>
+    This blog serves as a reference for the various functional interfaces included in Java 8, as well as their typical
+    use cases and integration into the JDK library.
+</p>
+<h2>Lambdas in Java 8</h2>
+<p>
+    Lambda expressions, a significant new syntactic enhancement introduced by <a
+        href="https://www.oracle.com/java/technologies/java8.html"
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_blank">Java 8</a>, are now available.
+    Lambdas are anonymous functions that we can manage like first-class citizens in our language. For example, we may
+    provide it to a method or return it from one.
+</p>
+<p>
+    In the past, whenever we needed to encapsulate a single piece of functionality, we would typically construct a
+    class. This entailed writing a lot of boilerplate code that was optional to build a simple function representation.
+</p>
+
+<h2>Functional Interfaces</h2>
+<p>
+    The functional interfaces and recommended practices for working with lambdas are covered in more detail in the
+    article "Lambda Expressions and Functional Interfaces: Tips and Best Practices." The java.util.function package's
+    various functional interfaces are the subject of this manual.
+</p>
+<p>
+    Any interface that contains a SAM (Single Abstract Method) is functional, and the implementation of such an
+    interface can be thought of as lambda expressions.
+</p>
+<p>
+    A functional interface may still have many default methods, and it should be noted that Java 8's default methods
+</p>
+
+<h2>Functions</h2>
+<p>
+    A functional interface with a method that accepts one value and returns another is the most basic and universal
+    example of a lambda. The Function interface, which is parameterized by the types of its arguments
+</p>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    public interface Function<T, R> {}
+    </pre>
+</div><br />
+
+<p>
+    The Map. computer absent method is one of the standard library's uses for the Function type. If a key does not
+    already exist in a map, this method calculates a value and returns it from it. It takes advantage of the supplied
+    Function implementation to calculate a value:
+</p>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-1')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-1"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    Map< String, Integer> name = new HashMap<>();
+    </pre>
+</div><br />
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-2')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-2"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    Integer value = name.computeIfAbsent("John", s -> s.length());
+    </pre>
+</div><br />
+<p>
+    In this instance, a value will be determined by applying a function to a key that has been placed inside a map and
+    has also been returned from a method call. A method reference that matches the types of the supplied and returned
+    values can be used in place of the lambda.
+</p>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-3')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-3"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+        Integer val = nameMap.computeIfAbsent("John", String::length);
+    </pre>
+</div><br />
+<p>
+    We can combine multiple functions into one and run them successively using the Function interface's default compose
+    method:
+</p>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-4')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-4"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    Function< Integer, String> intToString = Object::toString;
+    Function< String, String> quote = s -> "'" + s + "'";
+    
+    Function< Integer, String> quoteIntToString = quote.compose(intToString);
+    
+    assertEquals("'5'", quoteIntToString.apply(5));
+    </pre>
+</div><br />
+
+<h2>Primitive Function Specializations</h2>
+<p>
+    The most popular primitive types double, int, and long, as well as their combinations in argument and return types,
+    have their own versions of the Function interface because a primitive type cannot be a generic type parameter:
+</p>
+<ul class="ssq-blog-ul">
+    <li>IntFunction, LongFunction, and DoubleFunction: Specified type of arguments, parameterized return type</li>
+    <li>
+        ToIntFunction, ToLongFunction, and ToDoubleFunction: The arguments are parameterized and the return type is one
+        of the given types.
+    </li>
+    <li>
+        The titles of the functions DoubleToIntFunction, DoubleToLongFunction, IntToDoubleFunction, IntToLongFunction,
+        LongToIntFunction, and LongToDoubleFunction all specify that the argument and return types must be defined as
+        primitive types.
+    </li>
+</ul>
+
+<p>
+    For instance, a function that accepts a short and returns a byte does not have an existing functional interface;
+    nevertheless, this does not prevent us from creating one ourselves:
+</p>
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-5')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-5"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    @FunctionalInterface
+
+    public interface ShortToByteFunction 
+        {
+            byte applyAsByte(short s);
+        }
+    </pre>
+</div><br />
+
+<p>
+    Using a rule specified by a ShortToByteFunction, we can now create a function that converts an array of shorts into
+    an array of bytes:
+</p>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-6')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-6"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    public byte[] transformArray(short[] array, ShortToByteFunction function) {
+        int j;
+                byte[] arr = new byte[arr.length];
+            for ( j = 0; j < arr.length; j++) {
+                arr[j] = function.applyAsByte(arr[j]);
+            }
+            return transformedArray;
+        }            
+    </pre>
+</div><br />
+
+<p>
+    Here is how we could apply it to change a collection of shorts into a collection of bytes multiplied by two:
+</p>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-7')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-7"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    short[] arr = {(short) 1, (short) 2, (short) 3};
+    byte[] trnsArray = transformArray(arr, s -> (byte) (s * 2));
+    
+    byte[] expArray = {(byte) 2, (byte) 4, (byte) 6};
+    assertArrayEquals(expArray, trnsArray);     
+    </pre>
+</div><br />
+
+<h2>Two-Arity Function Specializations</h2>
+<p>
+    BiFunction, ToDoubleBiFunction, ToIntBiFunction, and <a
+        href="https://docs.oracle.com/javase/8/docs/api/java/util/function/ToLongBiFunction.html"
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_blank">ToLongBiFunction</a>
+    are additional interfaces that must be used in order to define lambdas with two arguments. While ToDoubleBiFunction
+    and other functions let us return a primitive value, BiFunction contains both arguments and a return type that are
+    generated.
+</p>
+<p>
+    In the standard API, the Map.replaceAll method, which allows replacing all of the
+</p>
+<p>
+    Let's construct a BiFunction that takes a key and an old value as inputs, computes a new value for the salary, and
+    then returns it.
+</p>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-8')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-8"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    Map< String, Integer> salary = new HashMap<>();
+    salary.put("John", 40000);
+    salary.put("Freddy", 30000);
+    salary.put("Samuel", 50000);
+    
+    salary.replaceAll((name, oldValue) -> 
+        name.equals("Freddy") ? oldValue : oldValue + 10000);
+    </pre>
+</div><br />
+
+
+<h2>Suppliers</h2>
+<p>
+    Another Function specialization that does not accept arguments is the Supplier functional interface. We often employ
+    it for value generation which is lazy. Let's define a function that squares a double value as an example. It won't
+    get anything for itself, but a Supplier will get something for it:
+</p>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-9')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-9"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    public double squareLazy(Supplier<Double> value)
+        {
+            return Math.pow(value.get(), 2);
+        }           
+    </pre>
+</div><br />
+
+<p>
+    This enables us to use a Supplier implementation to lazily construct the argument for calling this function. If the
+    process of creating the argument requires a lot of time, this may be helpful. Using Guava's sleep Uninterruptible
+    function, we'll mimic that:
+</p>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-10')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-10"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    Supplier< Double> val ue= () -> 
+        {
+            Uninterruptibles.sleepUninterruptibly(1000, TimeUnit.MILLISECONDS);
+            return 9d;
+        };
+        Double valueSquared = squareLazy(value);            
+    </pre>
+</div><br />
+<p>
+    Developing the logic for sequence generation is yet another use case for the Supplier. Let's utilize a static Stream
+    to show it. Create a stream of Fibonacci numbers using the following method:
+</p>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-11')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-11"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    int[] fib = {0, 1};
+    Stream< Integer> fibonacci = Stream.generate(() -> {
+        int result = fib[1];
+        int fib3 = fib[0] + fib[1];
+        fib[0] = fib[1];
+        fib[1] = fib3;
+        return result;
+    })         
+    </pre>
+</div><br />
+<p>
+    The Supplier functional interface is implemented by the function that is passed to the Stream. generate method. Keep
+    in mind that the Supplier typically requires some external state in order to be used as a generator. In this
+    instance, its state consists of the final two digits of the Fibonacci sequence.
+</p>
+
+<p>
+    Since all external variables used inside the lambda must be effectively final, we implement this state using an
+    array rather than a few variables.
+</p>
+<p>
+    BooleanSupplier, DoubleSupplier, LongSupplier, and IntSupplier are further functional interface specializations
+    whose return types are corresponding primitives.
+</p>
+
+<h2>Consumers</h2>
+<p>
+    The Consumer consumes a generated argument and gives nothing back, in contrast to the Supplier. It represents side
+    effects as a function.
+</p>
+<p>
+    For instance, let's display a welcome in the console and then greet each person in a list of names. To the List, the
+    lambda passed. Implementing the Consumer functional interface is the forEach method:
+</p>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-12')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-12"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    List< String> name = Arrays.asList("John", "Freddy", "Samuel");
+        name.forEach(name -> System.out.println("Hello, " + name));            
+    </pre>
+</div><br />
+<p>
+    Additionally, there are specialized Consumers that take arguments in the form of primitive values, like
+    DoubleConsumer, IntConsumer, and LongConsumer. The BiConsumer interface is more intriguing. Its application in
+    iterating through a map's entries is one example:
+</p>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-13')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-13"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    Map< String, Integer> age = new HashMap<>();
+    age.put("John", 25);
+    age.put("Freddy", 24);
+    age.put("Samuel", 30);
+    
+    age.forEach((name, a) -> System.out.println(name + " is " + age + " years old"));
+    </pre>
+</div><br />
+
+<p>
+    ObjDoubleConsumer, ObjIntConsumer, and ObjLongConsumer are three additional specialized BiConsumer variants that
+    each take two arguments, one of which is a primitive type and the other is gentrified.
+</p>
+
+<h2>Predicates</h2>
+<p>
+    A function that accepts a value and returns a boolean value is referred to as a predicate in mathematical logic.
+</p>
+<p>
+    An extension of a function that takes a generated value and returns a boolean is the Predicate functional interface.
+    The Predicate Lambda is frequently used to filter a set of values:
+</p>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-14')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-14"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    List< String> name = Arrays.asList("Angela", "Aaron", "Bob", "Claire", "David");
+
+    List< String> namesWithA = name.stream()
+        .filter(name -> name.startsWith("A"))
+        .collect(Collectors.toList()); 
+    </pre>
+</div><br />
+
+<p>
+    In the code above, we use the Stream API to filter a list and only keep the names that begin with the letter "A".
+    The filtering logic is contained within the Predicate implementation.
+</p>
+<p>
+    There are versions of this function that accept primitive values for IntPredicate, DoublePredicate, and
+    LongPredicate, just like in all the preceding examples.
+</p>
+
+<h2>Operators</h2>
+<p>
+    Special cases of a function that accepts and returns the same kind of value are operator interfaces. The interface
+    known as UnaryOperator only accepts one argument. To replace every value in a list with some computed values of the
+    same type is one of its use cases in the Collections API:
+</p>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-15')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-15"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    List< String> name = Arrays.asList("bob", "josh", "megan");
+        name.replaceAll(e -> name.toUpperCase());    
+    </pre>
+</div><br />
+
+<p>
+    The Replace List All functions return void because they change the existing values. The lambda that is used to
+    change a list's values must return the same result type that it gets in order to serve its intended purpose. This is
+    why the UnaryOperator is helpful in this situation.
+</p>
+<p>
+    Of course, we can just use a method reference in place of name -> name.toUpperCase():
+</p>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-16')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-16"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    name.replaceAll(String::toUpperCase);  
+    </pre>
+</div><br />
+
+<p>
+    A reduction operation is one of the more intriguing uses for a BinaryOperator. Consider the case when we want to sum
+    the values of a set of integers. We could accomplish this using a collector in Stream API, but the reduction method
+    would be a more general approach:
+</p>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-17')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-17"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    List< Integer> value = Arrays.asList(3, 5, 8, 9, 12);
+    int sum = value.stream()
+        .reduce(0, (i1, i2) -> i1 + i2); 
+    </pre>
+</div><br />
+
+<p>
+    A <a href="https://www.geeksforgeeks.org/binaryoperator-interface-in-java/"
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_blank">BinaryOperator</a>
+    function and the initial accumulator value are passed to the reduce method. This function takes two
+    identical-type values as parameters, and it also includes logic to combine those two values into a single
+    identical-type value. The passed function must be associative, which indicates that the order in which values are
+    accumulated is irrelevant. Accordingly, the following requirement must be met:
+</p>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-18')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-18"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    op.apply(a, op.apply(b, c)) == op.apply(op.apply(a, b), c)    
+    </pre>
+</div><br />
+
+<p>
+    We may parallelize the reduction process thanks to a BinaryOperator operator function's associative nature.
+</p>
+<p>
+    UnaryOperator and BinaryOperator specializations, such as DoubleUnaryOperator, IntUnaryOperator, LongUnaryOperator,
+    DoubleBinaryOperator, IntBinaryOperator, and LongBinaryOperator, can also be used with primitive values.
+</p>
+
+<h2>Legacy Functional Interfaces</h2>
+<p>
+    Not every user interface was present in Java 8. We can utilize many interfaces from earlier Java versions as lambdas
+    since they comply with the rules of a FunctionalInterface. The Runnable and Callable interfaces that are utilized in
+    concurrency APIs are two prominent examples. These interfaces are additionally designated as @FunctionalInterface in
+    Java 8. We can substantially simplify concurrency code because of this:
+</p>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-19')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-19"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    Thread t = new Thread(() -> System.out.println("Hello From Another Thread"));
+    t.start();          
+    </pre>
+</div><br />
+
+<p>
+    <strong>
+        This blog looked at various functional interfaces that are available in the Java 8 API that can be used as
+        lambda expressions. I Hope I’ve Shown a clear picture of java 8 functional interfaces, if you need more
+        clarification about the functional interface you can feel free to contact 
+        <a href="https://sanesquare.com/" style="color: rgb(9, 55, 203); font-size: unset !important;" target="_self">Sanesquare Technologies</a> for more details.
+    </strong>
+</p>

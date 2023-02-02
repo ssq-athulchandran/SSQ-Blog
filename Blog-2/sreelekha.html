@@ -1,0 +1,193 @@
+<p>
+    Now we are going to learn how to implement a 404 page in Angular. Whenever a user enters
+    some URL in the address bar for which we have not defined it in that case we want to display a
+    404 error.
+</p>
+
+<h2>What is a 404 Page?</h2>
+<p>
+    When any visitor hit an invalid URL, in a website or our
+    <a href="https://www.sanesquare.com/services/web-design-and-development.html"
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_self">web application</a>
+    that time we say it is a 404 error. Consider with an example, here I created an application with three outer links
+    Home, About and User.
+</p>
+<img class="ssq-blog-img" src="https://d26dzo6cruxhup.cloudfront.net/sanesquare/404-angular-blog-content-1.png"
+    alt="Application image" width="80%" height="auto" style="margin-top: 5px !important;" />
+<p>
+    Here you can see that our application is working fine when hitting the links Home,
+    User , About. We will get the Home page without getting an error in the console. So when a
+    the visitor of this website, might intentionally or might be by mistakenly hit an invalid url in
+    The addresses bar is as follows,
+</p>
+
+<p>
+    <em>localhost:4200/abc</em>
+</p>
+<p>That time you will find that we got an error in the console as follows:</p>
+<img class="ssq-blog-img" src="https://d26dzo6cruxhup.cloudfront.net/sanesquare/404-angular-blog-content-2.png"
+    alt="Console Error" width="80%" height="auto" style="margin-top: 5px !important;" />
+<p>
+    This error comes because of that we have not defined any route for this path in our angular application. Second
+    thing is, it will automatically redirect to our Home page. This is a 404 Error. To resolve this issue we will add a
+    404 page. On this Page we can write any message to the visitor like this is not a valid URL or you can show any
+    funny image that whatever you want to show. First, you have to make a component for the 404 page and we will add
+    Routing for it.
+</p>
+
+<h2>Make a Component for the 404 Page</h2>
+<p>
+    In the following approach, we will create a simple angular component called NoPageComponent using the command as
+    follows:
+</p>
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    ng g c no-page
+    </pre>
+</div><br />
+
+<p>
+    Whenever we hit an invalid URL, we have to get this NoPageComponent component <br />
+    Now, let’s go to the app-routing.module.ts
+</p>
+<img class="ssq-blog-img" src="https://d26dzo6cruxhup.cloudfront.net/sanesquare/404-angular-blog-content-3.png"
+    alt="App Routing Module file" width="80%" height="auto" style="margin-top: 5px !important;">
+
+<p>
+    Let’s write the new route as the last route and import the new component named NoPageComponent as follows:
+</p>
+<p>
+    <strong>
+        <em>- app-routing.module.ts</em>
+    </strong>
+</p>
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-1')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-1"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    import { NgModule } from '@angular/core';
+    import { RouterModule, Routes } from '@angular/router';
+    import { AboutComponent } from './about/about.component';
+    import { HomeComponent } from './home/home.component';
+    import { NoPageComponent } from './no-page/no-page.component';
+    import { UserComponent } from './user/user.component';
+    
+    const routes: Routes = [
+        {
+            component:AboutComponent,
+            path:'about'
+        },
+        {
+            component:UserComponent,
+            path:'user/:id'
+        },
+        {
+            component:HomeComponent,
+            path:''
+        },
+        {
+            component:NoPageComponent,
+            path:'**'
+        },
+    ];       
+    </pre>
+</div><br />
+
+<p>
+    After that in the path, we have to write the path name which is the path to redirect our application whenever no
+    path which we specified in this routing module is matched. <br />
+    So write the path name as follows:
+</p>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-2')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-2"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    {
+        component:NoPageComponent,
+        path:'**'
+    } 
+    </pre>
+</div><br />
+
+<p>
+    Here ’**’ specifies whenever any route will not be matched from the routing module, this NoPageComponent will load
+    automatically which is called the
+    <a href="https://dotnettutorials.net/lesson/wildcard-route-angular/#:~:text=What%20is%20Wildcard%20Route%20in,found%20error%20page%20is%20displayed."
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_blank">Wild Card Route</a>
+    in Angular. The important thing to note here is that the order of the route in which we define it matters. So this
+    route, this wild card route should always be the last.
+</p>
+<p>
+    That’s because this route matches every route path which the user will enter in the URL bar. If I move this route to
+    the top and then load this application we will see this page not found view for every route URL. Because whatever
+    path we enter inside the address bar that path will match this “**” and when it matches then it will not check for
+    other routes. So the wild card route should always be the last.
+</p>
+
+<p>
+    So in our example, every link that is Home, About, or User will work fine. Now If I am changing the URL as
+</p>
+
+<p>
+    <em>localhost:4200/abc</em>, you will see as follows
+</p>
+<img class="ssq-blog-img" src="https://d26dzo6cruxhup.cloudfront.net/sanesquare/404-angular-blog-content-4.png"
+    alt="Application Output" width="80%" height="auto" style="margin-top: 5px !important;">
+
+<p>
+    Apart from the above case if any path which we specified in the app- the routing module got broken, whenever I click
+    over it, this NoPageComponent will load.
+</p>
+<p>
+    Let me add some texts to this NoPageComponent view template. Here let’s add one h1 element which says “Opps !!! Page
+    Not Found” and let also add one more element as h2, some message to the visitor of this website like “Go to Home
+    Page or any other valid route”.
+</p>
+
+<p>
+    <strong>
+        <em>- no-page.component.html</em>
+    </strong>
+</p>
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-3')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-3"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    < h1>Oops !!! Page Not Found< /h1>
+    < h2>Go to Home Page or any other valid route< /h2>        
+    </pre>
+</div><br />
+
+<p>
+    Now, get back to the browser, you will find that whenever I just click with the URLs, like Home, About, and User it
+    will work fine and whenever I am just hit with the Invalid URL it will show the error message as follows:
+</p>
+<img class="ssq-blog-img" src="https://d26dzo6cruxhup.cloudfront.net/sanesquare/404-angular-blog-content-5.png"
+    alt="Application Home Page" width="80%" height="auto" style="margin-top: 5px !important;">
+<br />
+<img class="ssq-blog-img" src="https://d26dzo6cruxhup.cloudfront.net/sanesquare/404-angular-blog-content-6.png"
+    alt="Application 404-page" width="80%" height="auto" style="margin-top: 5px !important;">
+
+<p>
+    So in this way, if a path entered by the user does not match any route we can display this 404 page not found the
+    view to the user.
+</p>
+
+<p>
+    When we type the path in the URL, based on the path, the route is determined and a view is rendered. But what if we
+    type a path in the address bar for which no route is determined? In that case, angular will throw an error and that
+    error can be seen in the developer console. To avoid this error, we could add a wild card route that matches every
+    route. So, when a route is not found for a given path, the wild card route will be used and its view will be
+    rendered on the page. Sanesquare Technologies provides professional services for
+    <a href="https://sanesquare.com/services/hire-angular-developers-staff-augmentation.html"
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_self">
+        Angular upgrades and implementations.</a>
+    Please feel free to contact us if you need any further information.
+</p>

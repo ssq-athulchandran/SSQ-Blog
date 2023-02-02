@@ -1,0 +1,164 @@
+<p>
+    An Angular component's selector is often found in its HTML tag. The root of an HTML document is indicated by the
+    <code><html></code>tag. Except for the <code><!DOCTYPE></code> tag, this is the container for all other HTML
+    elements. However, a component could be made using a different host HTML element. Use an attribute selector defined
+    in the @Component decorator to construct a component statically (in the HTML template). One of the object's
+    properties that we use in conjunction with component configuration is a selector. A selector is used to describe how
+    the current component is rendered in the <a href="https://www.w3schools.com/whatis/whatis_htmldom.asp"
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_blank">HTML DOM</a>
+    and to identify each component in the component tree individually.
+    You can also give a custom host DOM element as a parameter if you wish to generate a component dynamically using the
+    Angular API. One of the crucial attributes that distinguishes each component specifically is the selector.
+    Additionally, we examined instances where a selector was used as an element, an attribute, or a class name. Remember
+    that selectors must be used carefully and are typically used as elements. Keep checking back for more fascinating
+    guides.
+</p>
+
+<h2>Creating a component statically</h2>
+<p>
+    The CSS selector places this directive within a template and causes its instantiation. Only CSS selectors that do
+    not cross element boundaries can still have directives sent to them in Angular. The most popular way of marking an
+    Angular component is a CSS element selector. Even though attribute selectors are primarily used for Angular
+    directives, you can also use them as component selectors.
+</p>
+<p>
+    In general, the component's selector property is basically a string used to identify the component or an element in
+    the DOM.
+</p>
+<p>
+    At the time of component creation, the selector name might by default have an app as a prefix, but we can change
+    that. Remember that no two component selectors may be the same.
+</p>
+<p>
+    In this fundamental form of the selector, the component is represented by the selector name as a whole element. In
+    order for the component to be presented as an element in the HTML DOM tree, we can set the selector property along
+    with the appropriate name when we build the component.
+</p>
+
+<p style="margin-top: 20px !important;">
+    Need an attribute selector to define a component instead of an element selector:
+</p>
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    @Component({
+        // Note the brackets around `new-component`, denoting an "attribute selector" instead of "element selector"
+        selector: '[new-component]'
+        /* ... */
+        })
+        export class Newcomponent {
+        /* ... */
+        }
+    </pre>
+</div><br />
+<p>Then, make a custom HTML tag referencing this component and add it as an attribute:</p>
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-1')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-1"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    < article new-component> < /article>
+    </pre>
+</div><br />
+
+<h2>Creating a component dynamically</h2>
+<p>
+    The NewComponent is the primary component in our Angular example of a dynamic component, and it is where most of the
+    work will be done.
+</p>
+
+<p style="margin-top: 20px !important;">The selector is irrelevant in this situation. possibly even typical.</p>
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-2')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-2"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    @Component({
+        selector: 'new-component'
+        /* ... */
+        })
+        export class NewComponent {
+        /* ... */
+        }
+    </pre>
+</div><br />
+<p>
+    The function for building the component dynamically (like createComponent() from @angular/core) should then be sent
+    an existing DOM element as a host:
+</p>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-3')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-3"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    import { createComponent, /* ... */ } from '@angular/core';
+    @Component
+    (/*...*/)
+    export class ParentComponent
+    {
+        constructor (protected injector: Injector, protected environmentInjector: EnvironmentInjector, protected viewContainerRef: ViewContainerRef )
+        {}
+        ngOnInit()
+        {
+            // create a fresh element, detached from DOM
+            const hostElement = document.createElement('article');
+            // create NewComponent, passing the `hostElement` param
+            const component = createComponent(NewComponent, {
+                hostElement, // <-----------------------------------
+                environmentInjector: this.environmentInjector,
+                elementInjector: this.injector,
+            });
+        // insert this component into the `ViewContainerRef` of the parent component
+        this.viewContainerRef.insert(component.hostView);
+    }    
+    </pre>
+</div><br />
+
+<h2>View a similar example of ComponentFactory usage:</h2>
+<p>
+    Base class for a factory that has the ability to dynamically build components. Use resolve
+    <a href="https://angular.io/api/core/ComponentFactory" style="color: rgb(9, 55, 203); font-size: unset !important;"
+        target="_blank">ComponentFactory()</a> to create a factory for a specific type of component . Utilize the
+    resulting ComponentFactory. Create a component of that type using the create() function.
+</p>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-4')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-4"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    constructor( protected injector: Injector, protected componentFactoryResolver: ComponentFactoryResolver, protected viewContainerRef: ViewContainerRef)
+    {}
+    ngOnInit() {
+        // create a fresh element, detached from DOM
+        const hostElement = document.createElement('article');
+        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(NewComponent);
+        // create NewComponent, passing the `hostElement` param
+        const component = componentFactory.create( this.injector, undefined,
+        hostElement // <----------------------------------- ); this.viewContainerRef.insert(component.hostView);
+    }        
+    </pre>
+</div><br />
+<p>
+    Hope you found the <a href="https://www.sanesquare.com/blog.php"
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_self">blog</a>
+    useful. In this blog, we try to give a summary of How to create an Angular component with a
+    different HTML tag than the selector. The HTML tag serves as a selector for an Angular component. However, it is
+    feasible to build a component with a special host HTML element. Use an attribute selector defined in the @Component
+    decorator to construct a component statically (in the HTML template). A custom host DOM element can also be passed
+    as a parameter when creating a component using the Angular API (such as createComponent() or
+    ComponentFactory.create()).
+</p><br /><br />
+
+
+
+<p>
+    <strong>
+        At sanesquare Technologies, we have the <a href="https://sanesquare.com/"
+            style="color: rgb(9, 55, 203); font-size: unset !important;" target="_self">best angular developers</a> to
+        help you out, If you have any doubts or questions feel free to contact us.
+    </strong>
+</p>

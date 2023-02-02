@@ -1,0 +1,205 @@
+<p>
+    The Test Automation Framework can be defined as a set of guidelines such as test-data handling, adherence to coding
+    standards, object repository treatment, and so on,that when followed during automation scripting produce beneficial
+    outcomes such as improved code reuse, greater movability, and lower script maintenance costs.
+</p>
+<p>
+    These are simply guidelines; they are not mandatory, and you can still script while not following the guidelines.
+</p>
+<p>However, you may miss out on the benefits of getting a framework.</p>
+
+<p>
+    <strong>
+        Below are the various sorts of automatic testing frameworks:
+    </strong>
+</p>
+<ol class="ssq-blog-ol">
+    <li>Linear Scripting</li>
+    <li>Library Design Framework</li>
+    <li>Data-Driven Testing Framework</li>
+    <li>Keyword-Driven or Table-Driven Testing Framework</li>
+    <li>Hybrid Check Automation Framework</li>
+</ol>
+
+<h4>
+    <strong>1. Linear Scripting</strong>
+</h4>
+<p>
+    It is the easiest of all testing automation frameworks and is conjointly understood as <strong>"Record &
+        Playback"</strong>.
+</p>
+<p>
+    During this <a href="https://www.sanesquare.com/services/quality-assurance-and-testing.html"
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_self">Automation Testing</a> Framework,
+    the tester manually records every step (navigation and user inputs) and
+    inserts checkpoints (validation steps) within the prelim round.
+</p>
+<p>The tester then replays the recorded script in the subsequent rounds.</p>
+
+<h4>
+    <strong>Pros</strong>
+</h4>
+<ul class="ssq-blog-ul" style="list-style: disc;">
+    <li>Quickest method for creating a script.</li>
+    <li>Automation expertise not needed.</li>
+    <li>The most straightforward method for learning the features of the Testing tool.</li>
+</ul>
+<h4>
+    <strong>Cons</strong>
+</h4>
+<ul class="ssq-blog-ul" style="list-style: disc;">
+    <li>Little re-usage of scripts.</li>
+    <li>knowledge in the test is hardcoded into the script.</li>
+    <li>Maintenance is hard.</li>
+</ul>
+
+<h4>
+    <strong>2. The Check Library design framework</strong>
+</h4>
+<p>In this Automation Testing Framework, take a look at scripts first recorded by the "Record & Playback" methodology.
+</p>
+<p>Later, common tasks within the scripts are known and classified into functions.</p>
+<p>
+    The functions are referred to by the main look at the script, referred to as the Driver, in several ways in which to
+    take a look at cases.
+</p>
+
+<h4>
+    <strong>Pros</strong>
+</h4>
+<ul class="ssq-blog-ul" style="list-style: disc;">
+    <li>Compared to "Record & Playback", structured scripts achieve a higher level of code reuse.</li>
+    <li>Automation scripts are less expensive to develop due to greater code reuse.</li>
+    <li>Simplified script maintenance.</li>
+</ul>
+<h4>
+    <strong>Cons</strong>
+</h4>
+<ul class="ssq-blog-ul" style="list-style: disc;">
+    <li>
+        Technical proficiency is required to write scripts using the
+        <a href="https://en.wikipedia.org/wiki/List_of_unit_testing_frameworks"
+            style="color: rgb(9, 55, 203); font-size: unset !important;" target="_blank">Test Library Framework</a>.
+    </li>
+    <li>More time is required in planning and preparing test scripts.</li>
+    <li>Test data is encoded in scripts.</li>
+</ul>
+
+<h4>
+    <strong>3. Data-Driven Testing Framework</strong>
+</h4>
+<p>
+    While the Test Case logic in this Framework is housed in Test Scripts, the Test Data is kept separate and apart from
+    the Test Scripts. Test Data is retrieved from external files (Excel, Text, CSV, ODBC sources, DAO objects, and ADO
+    objects) and loaded into test script variables. Both input values and verification values are used with variables.
+    Linear Scripting or the Test Library Framework are used to create the test scripts themselves.
+</p>
+
+<h4>
+    <strong>Pros</strong>
+</h4>
+<ul class="ssq-blog-ul" style="list-style: disc;">
+    <li>The Test Data is unaffected by modifications to the Test Scripts.</li>
+    <li>Multiple sets of data can be used to execute test cases.</li>
+    <li>Simply changing the test data in the external data file allows for the execution of numerous test scenarios.
+    </li>
+</ul>
+<h4>
+    <strong>Cons</strong>
+</h4>
+<ul class="ssq-blog-ul" style="list-style: disc;">
+    <li>Planning and preparing test scripts and test data require more time.</li>
+</ul>
+
+<h4>
+    <strong>4. Keyword-Driven or Table-Driven Testing Framework</strong>
+</h4>
+<p>
+    Independent of the test automation tool used to execute them, data tables and keywords are required for the
+    development of the Keyword-Driven or Table-Driven automation framework. Both with and without the Application, tests
+    can be created. In a keyword-driven test, each test's step-by-step instructions and a table detailing the
+    functionality of the application-under-test are provided.
+</p>
+<p>
+    <strong>A Keyword Driven Framework is made up of three fundamental parts:</strong>
+</p>
+<p>
+    <strong>Component Function-</strong>
+    Component functions are functions that actively manipulate or query GUI components. Examples of functions are
+    clicking a web button with all error handling, and entering data into a web edit with all error handling. Component
+    functionality can be application-dependent or application-independent.
+</p>
+
+<p>
+    <strong>Keyword-</strong>
+    A GUI component can be subjected to a keyword action. Ex. Some Keywords (Actions) for a <a
+        href="https://en.wikipedia.org/wiki/List_of_graphical_user_interface_elements#:~:text=Graphical%20user%20interface%20elements%20are,with%20and%20use%20computer%20software."
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_blank">GUI Component</a> Textbox would
+    be InputText, VerifyValue, VerifyProperty, and so on.
+</p>
+
+<p>
+    <strong>Application Map-</strong>
+    Application maps provide named references to GUI components. Application maps are just <strong>"object
+        repositories"</strong>.
+</p>
+
+<h4>
+    <strong>Pros</strong>
+</h4>
+<ul class="ssq-blog-ul" style="list-style: disc;">
+    <li>Provides high code reuse.</li>
+    <li>Independence from test tools.</li>
+    <li>The same script works in his AUT regardless of the application under test (with some caveats).</li>
+    <li>Tests can be designed without or with AUT.</li>
+</ul>
+<h4>
+    <strong>Cons</strong>
+</h4>
+<ul class="ssq-blog-ul" style="list-style: disc;">
+    <li>
+        The initial investment is very high, so this advantage can only be realized if the application is fairly large
+        and the test scripts are maintained for several years.
+    </li>
+    <li>Building a keyword-driven framework requires advanced automation expertise.</li>
+</ul>
+
+<h4>
+    <strong>5. Hybrid Check Automation Framework</strong>
+</h4>
+<p>
+    As the name recommends this system is the blend of at least one Robotization Structures talked about above pulling
+    from their assets and attempting to alleviate their shortcomings. The half and half test QA computerization
+    structure most test mechanization systems advance into over the long run and numerous undertakings. The greatest
+    industry involves Watchword systems in a mix of Capability disintegration techniques.
+</p>
+
+<h4>
+    <strong>6. Modular Automation Framework</strong>
+</h4>
+<p>
+    The Modular Test Automation Framework organizes each test case into smaller independent modules. There are different
+    scenarios for each case. However, the framework's single master script handles all these cases. This is a very
+    efficient approach, but it requires extensive planning and is best suited for developers with experience with test
+    automation tools.
+</p>
+
+<h3>Why choose sanesquare for Automation testing framework ?</h3>
+<p>
+    There are several reasons to choose <a href="https://www.sanesquare.com/index.html"
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_self">Sanesquare Technologies</a> for
+    automation testing. First, we have a team of experienced and skilled testers who are proficient in using a variety
+    of automation testing tools. This means that we can tailor our testing approach to meet the specific needs of your
+    project. Additionally, we have a track record of delivering high-quality testing services to our clients, and we
+    always strive to ensure that our clients are satisfied with the results of our work. Finally, we are committed to
+    staying up-to-date on the latest developments in the field of automation testing, which means that we can provide
+    you with cutting-edge testing solutions that help you improve the quality of your products and services.
+</p><br /><br />
+
+
+<h3>Conclusion</h3>
+<p>
+    Automation testing using test automation frameworks helps in many ways such as faster defect detection, test scripts
+    can be reused and minimum intervening by humans while running the test scripts. Our company has a team of
+    experienced and skilled testers who are proficient in using a variety of automation testing tools.
+</p>

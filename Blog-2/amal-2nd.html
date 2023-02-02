@@ -1,0 +1,420 @@
+<p>
+    Programming is a field that needs to be practiced or mastered on a daily basis. Otherwise, it will fail in the
+    future. In technology, new things are added every day. Therefore, we need to learn this related knowledge without
+    dwelling on traditional or ancient techniques.We need daily refreshment. This is relevant for all small parts. So
+    you should know what you don't know about Flutter. At the very least, we should hear about these things that will
+    definitely help us solve future problems.
+</p>
+<p>
+    Flutter is based on widgets. The widget has her two elements: current configuration and current status. The
+    application's main widget is the runApp() widget. Other widgets are organized in a widget tree. So the runApp()
+    widget is always the root. This concept was inherited by react components. We've covered 10 basic widgets that you
+    can use frequently. What are the widgets we are going to talk about?
+</p>
+<ul class="ssq-blog-ul">
+    <li style="padding-bottom: 5px !important;">
+        <strong>Safe Area</strong>
+    </li>
+    <li style="padding-bottom: 5px !important;">
+        <strong>Altitude</strong>
+    </li>
+    <li style="padding-bottom: 5px !important;">
+        <strong>Wrap</strong>
+    </li>
+    <li style="padding-bottom: 5px !important;">
+        <strong>Opacity</strong>
+    </li>
+    <li style="padding-bottom: 5px !important;">
+        <strong>Future Builder</strong>
+    </li>
+    <li style="padding-bottom: 5px !important;">
+        <strong>Floating Action Button</strong>
+    </li>
+    <li style="padding-bottom: 5px !important;">
+        <strong>Side View</strong>
+    </li>
+    <li style="padding-bottom: 5px !important;">
+        <strong>Table</strong>
+    </li>
+    <li style="padding-bottom: 5px !important;">
+        <strong>Fade in Image</strong>
+    </li>
+    <li style="padding-bottom: 5px !important;">
+        <strong>Stream Builder</strong>
+    </li>
+</ul>
+
+<p>Let's discuss this one at a time. We hope that you are familiar with these widgets.</p>
+
+<h2 style="margin-top: 15px !important;">Safe Area</h2>
+<p>
+    Use this option to create dynamic and adaptable user interfaces for users on different devices. We know that Android
+    and iOS have so many differences between these devices. Next, I want to create an adaptive and error-free user
+    interface, so I use the SafeArea widget. As an example, add extra padding as needed. Use media queries to check
+    screen size and make decisions based on that. Add the following properties to SafeArea:
+</p>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    const SafeArea({
+        squeaky,
+        this.left = true,
+        this.top = true,
+        this. right = true,
+        this.bottom = true,
+        this.minimum = EdgeInsets.zero,
+        this.maintainBottomViewPadding = false,
+        @required this.child,
+    }
+    </pre>
+</div><br />
+
+<h2>Expanded</h2>
+<p>
+    All Flutter UIs share rows and columns. You can loosen or tighten the components within these rows and columns.
+    Space out your kids and manage the space however you like. This time we will use this advanced widget. Advanced
+    widgets are similar to flexible widgets in Flutter. This is a very basic level for making widgets flexible. Upfront,
+    you should take advantage of many other flexibility options.
+</p>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-1')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-1"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+    const extension ({
+        button? key,
+        int flex:1,
+        desired widget child
+    })
+    </pre>
+</div><br />
+<p>
+    Here the flex factor determines how the widget will scale.
+</p>
+
+<h2 style="margin-top: 15px !important;">Wrap</h2>
+<p>
+    Rows and columns are good for arranging widgets. But sometimes I run out of the room. The Wrap widget can help with
+    that. Like the example below. Additional children are correctly aligned vertically or horizontally. You can handle
+    it using the direction property. This is useful when we are using dialogue buttons and chips.
+</p>
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-2')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-2"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    import 'package:flutter/material.dart';
+    void main() => runApp(MyApp());
+    
+    class MyApp extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {
+            return new MaterialApp(
+                title: "GFG",
+                theme: new ThemeData(
+                    primarySwatch: Colors.indigo
+                ),
+                debugShowCheckedModeBanner: false,
+                home: WrapW()
+            );
+        }
+    }
+    
+    class WrapW extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {
+        return Scaffold(
+            appBar:AppBar(
+                title: Text("Geno Tech"),
+            ),
+            body: Wrap(
+            // Key key,
+            // this.direction = Axis.horizontal,
+            // this.alignment = WrapAlignment.start,
+            // this.spacing = 0.0,
+            // this.runAlignment = WrapAlignment.start,
+            // this.runSpacing = 0.0,
+            // this.crossAxisAlignment = WrapCrossAlignment.start,
+            // this.textDirection,
+            // this.verticalDirection = VerticalDirection.down,
+            // this.clipBehavior = Clip.hardEdge,
+            children: < Widget>[
+                Container(
+                    color: Colors.red,
+                    width: 150,
+                    height: 50,
+                    child:Center(child: Text("C1",textScaleFactor: 2.5,))
+                ),
+                Container(
+                    color: Colors.yellow,
+                    width: 150,
+                    height: 50,
+                    child:Center(child: Text("C2",textScaleFactor: 2.5,))
+                ),
+                Container(
+                    color: Colors.teal,
+                    width: 150,
+                    height: 50,
+                    child:Center(child: Text("C3",textScaleFactor: 2.5,))
+                ),
+                Container(
+                    color: Colors.blue,
+                    width: 150,
+                    height: 50,
+                    child:Center(child: Text("C4",textScaleFactor: 2.5,))
+                ),
+                Container(
+                    color: Colors.orange,
+                    width: 150,
+                    height: 50,
+                    child:Center(child: Text("C5",textScaleFactor: 2.5,))
+                ),
+            ],
+            ),
+        );
+        }
+    } 
+    </pre>
+</div><br />
+<h4>Output: Example of Wrap Widget</h4>
+<img class="ssq-blog-img" src="https://d26dzo6cruxhup.cloudfront.net/sanesquare/flutter-widget-blog-content.png" alt="Wrap Widget Image" width="80%" height="auto" style="margin-top: 5px !important;"/>
+
+<h2 style="margin-top: 15px !important;">Opacity</h2>
+<p>
+    What happens when a child is deleted? Space collapses and rearranges the remaining children. If you want the white
+    space to remain after removing the child, you can try the opacity widget. Another way to use opacity as an image or
+    animation property.
+</p>
+
+<h2 style="margin-top: 15px !important;">Future Builder</h2>
+<p>
+    FutureBuilder allows you to easily determine the current state of the future and show the progress of loading data.
+    Check connectionState for future state and show appropriate widget if state is busy. We recommend that you make sure
+    there are no connection errors. There are other connection states you can check.
+</p>
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-3')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-3"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    ConnectionState.none
+    ConnectionState.active
+    ConnectionState.waits
+    ConnectionState.done        
+    </pre>
+</div><br />
+
+<h2>Floating Action Button</h2>
+<p>
+    Floating action buttons are the most unique type of button widget offered in Flutter. A widget that floats above
+    other widgets on the screen. It appears as a circular icon on the screen, with the icon displayed as a sub-icon in
+    the center. By default it is placed in the bottom right corner of the screen. To use floating action buttons in your
+    application, use the Floating Action Button provided in the Scaffold property.
+</p>
+
+<h2 style="margin-top: 15px !important;">PageView</h2>
+<p>
+    Flutter makes it easy to create great UIs with lots of widgets. However, if you want to create a diagram with two
+    sides, you can use this Page View. First, we need a page Controller to manage swipe detection and provide
+    animations. Then use the PageView widget to create the page and pass the page to be displayed to the controller.
+    Additionally, you can set the following properties for your purposes:
+</p>
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-4')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-4"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    PageView({key key,
+        axis scroll direction,
+        Boolean backwards,
+        PageController controller,
+        scroll physics,
+        boolean page snap,
+        void Function(int) onPageChanged,
+        List children,
+        DragStartBehavior dragStartBehavior,
+        bool allow ImplicitScrolling})              
+    </pre>
+</div><br />
+
+<h2>Table</h2>
+<p>
+    You can use a grid view to display a list of data, but if you want to display this data in a table without
+    scrolling, use a table widget. Tables provide consistency. You don't have to worry about the size and position of
+    each element in each row and column. Here is the constructor for the Table class:
+</p>
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-5')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-5"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    table({
+        key key,
+        List children,
+        Map column width,
+        table column width default column width,
+        text direction text direction,
+        table frame,
+        TableCellVerticalAlignment defaultVerticalAlignment,
+        TextBaseline textBaseline
+    })                          
+    </pre>
+</div><br />
+
+<h2>Fade in Image</h2>
+<p>
+    When displaying an image downloaded from the network, it is not recommended to display it blank until it is
+    downloaded. You can use the FadeInImage widget to display a placeholder (from the assets directory) until the
+    download is complete. You can set the size of the image early to avoid problems after loading. A sample code snippet
+    is shown below.
+</p>
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-6')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-6"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    new container (
+        Broad:
+        MediaQuery.of(context).size.width,
+        Child:
+        new FadeInImage.assetNetwork(
+            Placeholder:
+            'assets/images/esperanza.jpg',
+            Photo:
+            document[_newsImage],
+            fit:
+            BoxFit.Cover,
+            height:
+            250.0,
+        )
+    ),                 
+    </pre>
+</div><br />
+
+<h2>Stream Builder</h2>
+<p>
+    Modern apps work very asynchronously. Anything can happen at any time, in any order. You can treat this data as a
+    data stream. Dart supports consuming this asynchronous data stream using streams. You can use this functionality in
+    Flutter using the StreamBuilder widget. You can use data without any error with this. If there are any errors, It
+    also can handle using the snapshot notifier. Here I am showing a very simple example to just show the functionality
+    of the StreamBuilder widget.
+</p>
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-7')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-7"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    import 'dart:
+    async';
+    
+    import 'package:
+    flutter/material.dart';
+    
+    void main() => runApp(new MyApp());
+    
+    class MyApp extends StatelessWidget {
+    @override
+        Widget build(BuildContext context) {
+        return new MaterialApp(
+            title:
+            'Geno Tech',
+            theme:
+            new ThemeData(
+                primarySwatch:
+                Colors.blue,
+            ),
+            home:
+            new MyHomePage(),
+        );
+        }
+    }
+    
+    class MyHomePage extends StatefulWidget {
+    @override
+    _MyHomePageState createState() => new _MyHomePageState();
+    }
+    
+    class _MyHomePageState extends State {
+        int _counter = 0;
+        StreamController _events;
+
+        @override
+        initState() {
+        super.initState();
+        _events = new StreamController();
+        _events.add(0);
+        }
+
+        void _incrementCounter() {
+        _counter++;
+        _events.add(_counter);
+    
+    }
+    
+    @override
+    Widget build(BuildContext context) {
+        return new Scaffold(
+        appBar:
+        new AppBar(
+        title:
+        new Text("StreamBuilder Widget"),
+        ),
+        body:
+        new Center(
+        child:
+        new Column(
+        mainAxisAlignment:
+        MainAxisAlignment.center,
+        children:
+        [
+        new Text(
+        'Number of Button Pressed :
+        ',
+        ),
+        StreamBuilder(
+            stream:
+            _events.stream,
+            builder:
+            (BuildContext context, snapshot) {
+                return new Text(
+                snapshot.data.toString(),
+                style:
+                Theme.of(context).textTheme.display1,
+                );
+            },
+        ),
+        ],
+        ),
+        ),
+        floatingActionButton:
+        new FloatingActionButton(
+            onPressed:
+            _incrementCounter,
+            tooltip:
+            'Add',
+            child:
+            new Icon(Icons.add),
+            ), // This trailing comma makes auto-formatting nicer for build methods.
+            );
+        }
+    }
+    </pre>
+</div><br /><br />
+
+
+<h2>
+    <strong>Conclusion</strong>
+</h2>
+<p>
+    <strong>
+        This blog gives you the knowledge, Top Ten Flutter Widgets you Should Know. We hope you will use them in your
+        next Flutter project. As a leading Mobile App Development Company in India, our experts can help you if you need
+        assistance with your <a href="https://sanesquare.com/services/mobile-app-development.html"
+            style="color: rgb(9, 55, 203); font-size: unset !important;" target="_self">
+            Mobile Application Development</a>
+        needs. Feel free to contact us.
+    </strong>
+</p>
