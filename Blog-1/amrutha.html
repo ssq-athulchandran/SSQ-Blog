@@ -1,0 +1,246 @@
+<h2>What is a Collection in Java?</h2>
+
+<p>Java collection is a single unit of objects. Before the Collections Framework, it had been hard for programmers to
+    write down algorithms that worked for different collections. Java came with many Collection classes and Interfaces,
+    like Vector, Stack, Hashtable, and Array.
+
+</p>
+<p>
+    In JDK 1.2, Java developers introduced the <a href="https://en.wikipedia.org/wiki/Java_collections_framework" target="_blank"
+        style="color: darkblue;font-size: unset !important;">Collections Framework</a>, an essential framework to help
+    you achieve your data operations.
+</p>
+
+<h2>Why Do We Need Them?</h2>
+
+<ul class="ssq-blog-ul">
+    <li>Reduces programming effort & effort to study and use new APIs</li>
+    <li>Increases program speed and quality</li>
+    <li>Allows interoperability among unrelated APIs</li>
+    <li>Reduces effort to design new APIs</li>
+    <li>Fosters software reuse</li>
+</ul>
+
+<h2 id="table-top__title">Methods Present in the Collection Interface</h2>
+<table class="ssq-blog-table" id="blog-table">
+    <ts>
+        <th style="text-align: center;">No</th>
+        <th>Method</th>
+        <th>Description</th>
+    </ts>
+    <tr>
+        <td style="text-align: center;">1</td>
+        <td>Public boolean add(E e)</td>
+        <td>To insert an object in this collection.</td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">2</td>
+        <td>Public boolean remove(Object element)</td>
+        <td>To delete an element from the collection.</td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">3</td>
+        <td>
+            Default boolean removeIf(Predicate
+            <? super E> filter)
+        </td>
+        <td>
+            For deleting all the elements of the collection that satisfy the specified predicate.
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">4</td>
+        <td>
+            Public boolean retainAll(Collection<?> c)
+        </td>
+        <td>
+            For deleting all the elements of invoking collection except the specified collection.
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">5</td>
+        <td>Public int size()</td>
+        <td>This return the total number of elements.</td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">6</td>
+        <td>Publicvoid clear()</td>
+        <td>This removes the total number of elements.</td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">7</td>
+        <td>Publicboolean contains(Object element)</td>
+        <td>It is used to search an element.</td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">8</td>
+        <td>PublicIterator iterator()</td>
+        <td>It returns an iterator.</td>
+    </tr>
+    <tr>
+        <td style="text-align: center;">9</td>
+        <td>PublicObject[] toArray()</td>
+        <td>It converts collection into array.</td>
+    </tr>
+
+</table><br />
+
+<h2>Collection Framework Hierarchy</h2>
+<img class="ssq-blog-img" src="https://d26dzo6cruxhup.cloudfront.net/sanesquare/java-collection-blog-content-1.png"
+    alt="Collection Framework Hierarchy-image" width="80%" height="auto" />
+
+<h2>List Interface</h2>
+<p>
+    This is the child interface of the collection <a href="https://en.wikipedia.org/wiki/Interface_(Java)" target="_blank"
+        style="color: darkblue;font-size: unset !important;">interface</a>. It is purely for lists of data, so we
+    can store the ordered lists of the objects. It also allows duplicates to be stored. Many classes implement this
+    list interface, including ArrayList, Vector, Stack, and others.
+</p>
+
+<h4 style="font-weight: bold; color: darkblue;">Array List</h4>
+<ul class="ssq-blog-ul">
+    <li>It is a class present in java. util package.</li>
+    <li>It uses a dynamic array for storing the element.</li>
+    <li>It is an array that has no size limit.</li>
+    <li>We can add or remove elements easily.</li>
+</ul>
+
+<h4 style="font-weight: bold; color: darkblue;">Linked List</h4>
+<ul class="ssq-blog-ul">
+    <li>
+        The LinkedList class uses a doubly LinkedList to store elements. i.e., the user can add data at the initial
+        position as well as the last position.
+    </li>
+    <li>It allows Null insertion.</li>
+    <li>If we’d wish to perform an Insertion /Deletion operation LinkedList is preferred.</li>
+    <li>Used to implement Stacks and Queues.</li>
+</ul>
+
+<h4 style="font-weight: bold; color: darkblue;">Vector</h4>
+<ul class="ssq-blog-ul">
+    <li>Every method is synchronized.</li>
+    <li>The vector object is Thread safe.</li>
+    <li>At a time, one thread can operate on the Vector object.</li>
+    <li>Performance is low because Threads need to wait.</li>
+</ul>
+
+<h4 style="font-weight: bold; color: darkblue;">Stack</h4>
+<ul class="ssq-blog-ul">
+    <li>It is the child class of Vector.</li>
+    <li>It is based on LIFO (Last In First Out) i.e., the Element inserted in last will come first.</li>
+</ul>
+
+<h2>Queue</h2>
+<p>
+    A queue interface, as its name suggests, upholds the FIFO (First In First Out) order much like a conventional
+    queue line. All of the elements where the order of the elements matters will be stored in this interface. For
+    instance, the tickets are always offered on a first-come, first-serve basis whenever we attempt to book one. As
+    a result, the ticket is awarded to the requester who enters the queue first. There are many classes, including
+    ArrayDeque, PriorityQueue, and others. Any of these subclasses can be used to create a queue object because they
+    all implement the queue.
+</p>
+
+<h2>Dequeue</h2>
+<p>
+    The queue data structure has only a very tiny modification in this case. The data structure deque, commonly
+    referred to as a double-ended queue, allows us to add and delete pieces from both ends of the queue. ArrayDeque,
+    which implements this interface. We can create a deque object using this class because it implements the Deque
+    interface.
+</p>
+
+<h2>Set Interface</h2>
+<p>
+    A set is an unordered collection of objects where it is impossible to hold duplicate values. When we want to
+    keep unique objects and prevent object duplication, we utilize this collection. Numerous classes, including
+    HashSet, TreeSet, LinkedHashSet, etc. implement this set interface. We can instantiate a set object with any of
+    these subclasses because they all implement the set.
+</p>
+
+<h4 style="font-weight: bold; color: darkblue;">LinkedHashSet</h4>
+<ul class="ssq-blog-ul">
+    <li>The LinkedHashSet class extends the HashSet class.</li>
+    <li>Insertion order is preserved.</li>
+    <li>Duplicates aren’t allowed.</li>
+    <li>LinkedHashSet is non synchronized.</li>
+    <li>LinkedHashSet is the same as the HashSet except the above two differences are present.</li>
+</ul>
+
+<h4 style="font-weight: bold; color: darkblue;">HashSet</h4>
+<ul class="ssq-blog-ul">
+    <li>HashSet stores the elements by using the mechanism of Hashing.</li>
+    <li>It contains unique elements only.</li>
+    <li>This HashSet allows null values.</li>
+    <li>It doesn’t maintain insertion order. It inserted elements according to their hashcode.</li>
+    <li>It is the best approach for the search operation.</li>
+</ul>
+
+<h2>Sorted Set</h2>
+<p>
+    The set interface and this interface are extremely similar. The only distinction is that this interface provides
+    additional methods for maintaining the elements' order. The interface for handling data that needs to be sorted,
+    which extends the set interface, is called the sorted set interface. TreeSet is the class that complies with this
+    interface. This class can be used to create a SortedSet object because it implements the SortedSet interface.
+</p>
+
+<h4 style="font-weight: bold; color: darkblue;">TreeSet</h4>
+<ul class="ssq-blog-ul">
+    <li>Java TreeSet class implements the Set interface it uses a tree structure to store elements.</li>
+    <li>It contains Unique Elements.</li>
+    <li>TreeSet class access and retrieval time are quick.</li>
+    <li>It doesn’t allow null elements.</li>
+    <li>It maintains Ascending Order.</li>
+</ul>
+
+<h2>Map Interface</h2>
+<p>
+    It is a part of the collection framework but does not implement a collection interface. A map stores the values
+    based on the key and value Pair. Because one key cannot have numerous mappings, this interface does not support
+    duplicate keys. In short, The key must be unique while duplicated values are allowed. The map interface is
+    implemented by using HashMap, LinkedHashMap, and HashTable.
+</p>
+
+<h4 style="font-weight: bold; color: darkblue;">HashMap</h4>
+<ul class="ssq-blog-ul">
+    <li>Map Interface is implemented by HashMap.</li>
+    <li>HashMap stores the elements using a mechanism called Hashing.</li>
+    <li>It contains the values based on the key-value pair.</li>
+    <li>It has a unique key.</li>
+    <li>It can store a Null key and Multiple null values.</li>
+    <li>Insertion order isn’t maintained and it is based on the hash code of the keys.</li>
+    <li>HashMap is Non-Synchronized.</li>
+    <li>How to create HashMap.</li>
+</ul>
+
+<h4 style="font-weight: bold; color: darkblue;">LinkedHashMap</h4>
+<ul class="ssq-blog-ul">
+    <li>The basic data structure of LinkedHashMap is a combination of LinkedList and Hashtable.</li>
+    <li>LinkedHashMap is the same as HashMap except above difference.</li>
+</ul>
+
+<h4 style="font-weight: bold; color: darkblue;">HashTable</h4>
+<ul class="ssq-blog-ul">
+    <li>A Hashtable is an array of lists. Each list is familiar as a bucket.</li>
+    <li>A hashtable contains values based on key-value pairs.</li>
+    <li>It contains unique elements only.</li>
+    <li>
+        The hashtable class doesn’t allow a null key as well as a value otherwise it will throw
+        NullPointerException.
+    </li>
+    <li>Every method is synchronized. i.e At a time one thread is allowed and the other threads are on a wait. </li>
+    <li>Performance is poor as compared to HashMap.</li>
+</ul>
+
+<p>
+    This blog illustrates the interfaces and classes of the java collection framework. Which is useful for java
+    developers while writing efficient codes. This blog is intended to help you understand the concept better.
+</p>
+<br /><br />
+
+<p>
+    <b>
+        At Sanesquare Technologies, we provide <a href="https://sanesquare.com/services/web-design-and-development.html"
+            style="color: darkblue;font-size: unset !important;">end-to-end solutions
+            for Development Services</a>. If you
+        have any doubts regarding java concepts and other technical topics, feel free to contact us.
+    </b>
+</p>

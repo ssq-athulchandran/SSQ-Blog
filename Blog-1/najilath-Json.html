@@ -1,0 +1,89 @@
+<p>
+    The fundamental feature of JWTs is that we simply need to inspect the tokens and verify the signature to determine
+    if they are genuine; we don't need to make separate server calls or store the tokens in memory or a database between
+    requests. JWTs will at the very least have a user ID and an expiration timestamp if they are used for
+    authentication. Assuming a JWT is a string with a verifiable JSON payload that describes a user Session.
+</p>
+
+<h2>Why Was a Distinct Authentication Service Needed?</h2>
+<p>
+    We can keep our code tidy by consolidating all of our client authentication functionality into a single,
+    application-wide AuthService. In this manner, for instance, only this class has to be changed if we decide to switch
+    security providers later or rearrange our security logic.
+</p>
+
+<h2>Returning a JWT to a Client</h2>
+<p>We can return the token to the user in a variety of methods, such as:</p>
+<ol class="ssq-blog-ol">
+    <li>
+        <b>In the Request Body in a Cookie</b>
+    </li>
+    <p style="margin-top: 10px;">
+        Cookies are a browser data storage technology that allows us to safely save a limited amount of data in a simple
+        HTTP Header. Assuming the login page and the application share the same root domain, this means that if we save
+        the <a href="https://en.wikipedia.org/wiki/JSON_Web_Token"
+            style="color: rgb(9, 55, 203); font-size: unset !important;" target="_blank">
+            JWT</a> in a cookie, we won't need any additional client logic to send the cookie back to the application
+        server with each request. However, there are some drawbacks to cookies as well, so let's discuss. You click on a
+        link sent to you by someone.
+    </p>
+    <p>
+        The link eventually sends an HTTP request to the hacked website that includes all of the site's cookies.
+        Additionally, the browser will immediately forward the Cookie containing our JWT bearer token if you were logged
+        into the website. There is no way for the server to differentiate between this attack and a legitimate request
+        because it receives a valid JWT. This means that by sending an email or posting a link, an attacker may persuade
+        a user to carry out specific actions on its behalf.
+    </p><br />
+
+    <li>
+        <b>Returning the JWT in the Body of the HTTP Response</b>
+    </li>
+    <p style="margin-top: 10px;">
+        For instance, we will return the JWT to the client in the HTTP Response body rather
+        than using cookies. It is preferable to send the expiration timestamp as a distinct property in addition to the
+        JWT itself when returning a JWT. Although the session duration may also be easily obtained by the client without
+        installing a <a href="https://jwt.io/libraries" style="color: rgb(9, 55, 203); font-size: unset !important;"
+            target="_blank">JWT library</a>, indeed, the expiration timestamp is also provided within the JWT.
+    </p>
+</ol>
+
+<h2>Client-Side Storing and Using of JWT Once</h2>
+<p>
+    We must keep the JWT that we receive on the client since if we refresh the browser,
+    it will be gone and we will have to log in again. The JWT and expires are contained in the outcome of the login call
+    that we are receiving. We are saving the JWT directly in Local Storage in the id token key entry in the property and
+    providing it directly to the <em><b>setSession</b></em> method inside of <em><b>setSession</b></em>. We are using
+    the current instant and the ExpiresIn property to determine the expiration timestamp. Then, in the expiration at
+    Local Storage field, we are also preserving the expiration timestamp as a numeric integer.
+</p>
+<p>
+    For instance, the client program needs to know whether the user is logged in or out to determine whether to display
+    particular UI elements, such as the Login`/`Logout menu buttons, or not. The functions <em><b>isLoggedIn()</b></em>,
+    <em><b>isLoggedOut()</b></em>, and <em><b>getExpiration</b></em> now make this data available () ending On each
+    request, the server sends the JWT.
+</p>
+
+<p>
+    What we need to do is somehow attach the JWT to every HTTP request made to the
+    application server! Afterward, the application server will validate the request and associate it with a user by
+    simply looking at the JWT, verifying its signature, and reading the user identification from the payload. We'll
+    utilize an Angular HTTP Interceptor to make sure that each request contains a JWT.
+</p>
+
+<p>
+    To check whether the JWT is present, we first directly retrieve the JWT string from Local Storage. If the JWT is
+    missing, the request is transmitted to the server unaltered. If the JWT is present, we will clone the HTTP headers
+    and add an Authorization header that will contain the JWT.
+</p><br /><br />
+
+
+<p>
+    <b>
+        For any business, Authentication and authorization are two vital information security processes that
+        administrators use to protect systems and information. This blog demonstrates how to perform authentication
+        and authorization using JWT in Angular. Our team at Sanesqaure Technologies offers the
+        <a href="https://sanesquare.com/services/web-design-and-development.html"
+            style="color: rgb(9, 55, 203); font-size: unset !important;" target="_self">
+            best Angular application development services.</a> Feel free to chat with us if you need assistance.
+    </b>
+</p>

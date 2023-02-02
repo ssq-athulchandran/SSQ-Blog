@@ -1,0 +1,263 @@
+<p>
+    Flutter GetX is a Fast, Stable, Extra-light, and Powerful Flutter Framework! Whenever we tend to start building
+    associate applications in an extreme flutter, we tend to need to decide what state management we wish to use. It'd
+    be easier for you to make this decision with this journal.
+</p>
+
+<p>
+    Here, throughout this tutorial: Flutter state management using GetX, I'd value more highly to justify GetX, a robust
+    <strong>flutter framework</strong>.
+</p>
+
+<h2>What is GetX?</h2>
+<p>
+    State management permits you information transferring at intervals to the appliance. And whenever information is
+    passed, the application’s state is updated, consequently reconstructing the system. Thus, developers need to be
+    notably careful regarding managing the state of the associate in the nursing application as a result of state
+    updates may usually seem dear for a fancy application.
+</p>
+
+<p>
+    Flutter traditionally provides stateful contrivance to manage states in applications. However, we wish to affect
+    some limitations once using of
+    <a href="https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html#:~:text=A%20stateful%20widget%20is%20a,the%20user%20interface%20more%20concretely."
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_blank">Stateful Widgets.</a>
+    To overcome the restrictions, we tend to square measure ready to select Flutter state management using GetX.
+</p><br />
+
+<p>
+    GetX can be a strong and lightweight resolution provided by Flutter to manage states and their updation.
+</p>
+
+<h3>It provides:</h3>
+<ul class="ssq-blog-ul">
+    <li>High-performance state management</li>
+    <li>Intelligent dependency injection</li>
+    <li>Quick and smart route management</li>
+</ul>
+
+<h2>Why GetX?</h2>
+<p>
+    So, let’s dive a touch deeper into why we wish GetX to manage the state at intervals of the flutter app. GetX
+    improves <a href="https://sanesquare.com/" style="color: rgb(9, 55, 203); font-size: unset !important;"
+        target="_self">flutter application</a>in three fully different criteria:
+</p>
+
+<ol class="ssq-blog-ol">
+    <li style="padding-bottom: 5px !important;">
+        <strong>Productivity:</strong>
+        Developers can merely implement GetX state management flutter with the help of straightforward syntax. No matter
+        how difficult a code snip is also, you will be ready to save time with GetX flutter. It'll increase productivity
+        by decreasing the event time delivering more performance.
+    </li>
+    <li style="padding-bottom: 5px !important;">
+        <strong>Organization and Readability:</strong>
+        GetX decouples the scan. By providing an easy and uncomplicated syntax, the business logic becomes more readable
+        and formatted.
+    </li>
+    <li style="padding-bottom: 5px !important;">
+        <strong>Performance:</strong>
+        As mentioned in the prime of, GetX focuses on but minimum resources are also consumed, which can facilitate in
+        rising the appliance performance. It doesn’t use ChangeNotifier or Streams. See below the RAM chart depicting
+        varied state managers.
+    </li>
+</ol>
+
+<h3>RAM Usage Chart</h3>
+<img class="ssq-blog-img" src="https://d26dzo6cruxhup.cloudfront.net/sanesquare/getx-flutter-blog-content.png"
+    width="80%" height="auto" alt="RAM Usage Chart Image" />
+
+<h2>Install GetX</h2>
+<h4 style="font-weight: bold !important; margin-bottom: 5px !important; margin-top: 15px !important;">
+    flutter pub add get
+</h4>
+<p>
+    Run the on prime of command in Android studio/vs code’s terminal, and it will add the foremost recent GetX plugin to
+    pubspec.yaml.
+</p>
+<p>
+    We square measure reaching to cowl 3 sections during this more tutorial
+</p>
+
+<ol class="ssq-blog-ol">
+    <li>State management for basic counter app</li>
+    <li>Navigation Using GetX</li>
+    <li>Inflating UI parts whereas not context</li>
+</ol>
+
+<h3>Flutter State Management's Using GetX</h3>
+<p>
+    Here I will be ready to turn out one counter app by separating UI logic and business logic using a controller, which
+    I'd use for this. Don’t worry if you are not tuned in to all or any of this; I am explaining those well one by one.
+</p>
+<p>
+    You can see the project structure.I have created using the recommended GetX pattern, with a scan,
+    controller, and binding class. Scan class handles the code for inflating the UI, which might appear on the screen.
+    The binding class would be associated with a particular page, and during this class, we tend to square measure ready
+    to instantiate controller classes. In controller class, we tend to square measure ready to define variables and
+    business logic functions, in our case increments operate. Also, at intervals the most.dart, we have got declared
+    <strong>GetMaterialApp</strong> not <strong>MaterialApp</strong> so we tend to square measure ready to use all the
+    functionalities of GetX framework.
+</p>
+
+<h4 style="font-weight: bold !important; margin-bottom: 5px !important;">
+    CounterController class
+</h4>
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    class CounterController extends GetxController {
+        final count = 0.obs;
+        void increment() {
+            count.value++;
+        }
+    }
+    </pre>
+</div><br />
+
+<p>
+    Here I even have declared the count variable with .obs, that suggests count is discernible, and whenever there is a
+    modification throughout this worth, we tend to square measure ready to hear that worth via controller class. In
+    distinction to suppliers, we tend to not have to be compelled to call notifylisteners. At intervals the increment
+    operates, I’m simply incrementing the count variable price.
+</p><br />
+
+<h4 style="font-weight: bold !important; margin-bottom: 5px !important;">
+    CounterBinding class
+</h4>
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    class CounterBinding extends Bindings {
+        @override
+        void dependencies() {
+            Get.lazyPut(
+            () => CounterController(),
+            );
+        }
+    }
+    </pre>
+</div><br />
+
+<h4 style="font-weight: bold !important; margin-bottom: 5px !important;">
+    CounterView class
+</h4>
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-1')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-1"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    class CounterView extends GetView {
+        @override
+        Widget build(BuildContext context) {
+            final CounterController counterController = Get.put(CounterController());
+    
+            return Scaffold(
+                appBar: AppBar(
+                    title: Text('Counter'),
+                    centerTitle: true,
+                ),
+                body: Center(
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                        Obx(() =>
+                            Text(
+                                "Counter value is ${counterController.count}",
+                                style: TextStyle(fontSize: 25),
+                            ),
+                        ),
+                        SizedBox(height: 16),
+                        TextButton(
+                            style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(Colors.blue),
+                            ),
+                            onPressed: () {
+                                counterController.increment();
+                            },
+                            child: Text('Increment', style: TextStyle(fontSize: 14, color: Colors.white)),
+                        ),
+                        ],
+                    ),
+                ),
+            );
+        }
+    }
+            
+    </pre>
+</div><br />
+
+<p><b>final CounterController counterController = Get.put(CounterController());</b></p>
+<p>
+    Using the on prime of syntax at intervals in the build methodology, I even printed the controller class. The text
+    button will call the increment methodology printed at intervals in the controller class and Text which might show
+    the updated worth of the count.
+</p>
+
+<p>
+    Here I even have used one simple example of counter application to understand all the classes, structure, and state
+    management merely. We can achieve many more using GetX flutter using following this observable pattern and writing
+    cleaner code.
+</p>
+
+<h3>Let’s dive into the navigation part,</h3>
+<h4 style="font-weight: bold !important; margin-bottom: 5px !important; margin-top: 15px !important;">
+    Navigation using GetX
+</h4>
+<p>
+    In the screenshot connected at intervals to the state management block, we have in addition created a page name
+    home. so let’s say we wish to haunt the house page from the counter class on one button click. we tend to square
+    measure ready to simply call the GetX navigation block, as shown below.
+</p>
+
+<h4 style="font-weight: bold !important; margin-bottom: 5px !important; margin-top: 15px !important;">
+    Get.to(HomeView());
+</h4>
+<p>
+    Pretty simple. Isn’t it? rather than vocation up many boilerplate codes, we tend to square measure ready to simply
+    call this and move to a special screen. Moreover, there are fully different decisions to send to a distinct page
+    too.
+</p>
+
+<p>
+    For instance, you will be ready to simply replace the house screen with a presently open screen below. It suggests
+    that this screen which could get replaced won’t be at intervals on the stack.
+</p>
+
+<h4 style="font-weight: bold !important; margin-bottom: 5px !important; margin-top: 15px !important;">
+    Get.off(HomeView());
+</h4>
+<p>
+    And, if we wish to urge eliminate all previous stacks, we tend to square measure ready to call Get.off(HomeView());
+</p>
+
+<h4 style="font-weight: bold !important; margin-bottom: 5px !important; margin-top: 15px !important;">
+    Get.offAll(HomeView());
+</h4>
+<p>
+    Apart from that, we can pass knowledge between routes and show animation before we go another route and open a
+    screen as a dialog using flutter GetX.
+</p>
+
+<h2>Conclusion</h2>
+<p>
+    I covered the basic structure of GetX State Management in a flutter in this blog; you can adapt this code to suit
+    your needs. This was my brief introduction to GetX State Management On User Interaction, and it works with Flutter.
+    I hope this blog has given you enough information to experiment with GetX State Management in your flutter projects.
+</p><br /> <br /><br />
+
+
+
+<p>
+    <b>
+        As one of the leading <a href="https://sanesquare.com/services/mobile-app-development.html"
+            style="color: rgb(9, 55, 203); font-size: unset !important;" target="_self">
+            Mobile Application Development Companies in India,</a> we can help you develop a mobile
+        application for your business. If you need more information, do not hesitate to reach out to us.
+    </b>
+</p>

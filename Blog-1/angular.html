@@ -1,0 +1,153 @@
+<p>
+    Many front-end apps, particularly those used for enterprise development, are heavily form-driven. Many of these
+    applications are really just large forms that span several tabs and dialogue boxes and include complex business
+    logic for validation. Here we discuss what are the practical difference between reactive forms & template driven
+    forms.
+</p>
+
+<h2>Ng Model Two Way Binding in Template Driven Form</h2>
+
+<p>
+    The simplest way to create a form in
+    <a href="https://sanesquare.com/services/hire-angular-developers-staff-augmentation.html"
+        target="_blank">Angular</a> is through a
+    template-driven approach. In order to construct and manage
+    the underlying form object, it makes use of Angular's two-way data-binding directive (ngModel).
+</p> <br />
+<p>
+    Using two-way binding, it is feasible to display a data property and update it in response to user input. The
+    two-way binding enables data interaction between components of your app in both directions. You will be able to
+    listen to events and update data between parent and child components at the same time. Two-way data binding is
+    nothing more than the application of both property binding and event binding. A route from a component to a view is
+    through property binding. One route from the view to the component is through the event binding. Both can be
+    combined to create a two-way binding.
+</p>
+
+<h2>Reactive Form</h2>
+<p>
+    On the surface, a reactive form resembles a template-driven form quite a bit. Reactive forms are built using
+    "ReactiveFormsModule" while template-driven forms use the <em>"FormsModule"</em> Reactive forms are primarily
+    synchronous,
+    whereas template-driven forms are asynchronous in nature. The domain model is used to bind FormControl objects to
+    form control elements provided by Angular ngModel. The
+    <a href="https://docs.angularjs.org/api/ng/directive/ngModel" target="_blank">ngModel</a> directive can be used to
+    link an HTML
+    control to an
+    application (such as an input, select, or textarea).
+</p><br />
+<p>
+    Forms typically contain several related controls. There are two methods for combining various related controls into
+    a single input form using reactive forms. They are form group and form array. Every form in Angular Reactive Forms
+    has a form model that is defined programmatically using either the <em>FormControl</em> and <em>FormGroup</em> APIs
+    or the shorter
+    <em>FormBuilder</em> API.
+</p><br />
+<p>
+    The group name directive on the <em>
+        < div>
+    </em> allows us to access nested form controls like <em>fromControlName="street"</em> that are children of that
+    element
+    directlyinstead of writing <em>"street.address"</em> when the address sub-form is implemented inline.
+</p><br />
+<p>
+    Form Group describes a form having a certain number of controls that you can control collectively. The basics of
+    form groups are covered in this section. To develop more complicated forms, form groups can also be nested and a
+    Form array defines a dynamic form that allows for run-time addition and removal of controls. Form arrays can also be
+    nested to produce more complicated shapes. See Creating dynamic forms for additional information on this choice.
+</p>
+
+<h2>Reactive Forms Validation</h2>
+<p>
+    Form validation is a crucial step that adds a security layer to prevent unauthorized individuals from abusing web
+    forms. Checking that the data is in the correct format before sending it to the server is crucial. This Angular
+    forms validation example demonstrates how to correctly validate a form and secure your Angular Application. Reactive
+    forms provide a model-driven method of handling form inputs with often changing values.
+</p>
+
+<h4 style="font-weight: bold;"><em>Example:</em></h4>
+<h4 style="font-weight: bold; font-size: 14px !important;">HTML</h4>
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    < div class="col custom-col">
+        < input type="text" formControlName="firstName" id="defaultRegisterFormFirstName" 
+            class="form-control" placeholder="First name">
+        < span>* First Name is required< /span>
+    < /div>
+
+    </pre>
+</div><br />
+
+<h4 style="font-weight: bold; font-size: 14px !important;">TypeScript</h4>
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-1')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-1"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    this.userForm = this.formBuilder.group ({
+        firstName: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
+        lastName: ['',[Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
+        email: ['', [Validators.required, Validators.email]]
+    });    
+        
+    </pre>
+</div>
+
+<br />
+<h3>There are Some Types of Validation</h3>
+<ul class="ssq-blog-ul">
+    <li>Inbuilt Validation in Angular</li>
+    <li>Custom Validation</li>
+</ul>
+<br />
+
+<h4 style="font-weight: bold;"><em>Example:</em></h4>
+<h4 style="font-weight: bold; font-size: 14px !important;">HTML</h4>
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-2')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-2"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    < div class="custom-col">
+        < input type="email" formControlName="email" id="defaultRegisterFormEmail" 
+            class="form-control mb-4" placeholder="E-mail">
+        < span *ngIf="formSubmitted && userForm.get('email').hasError('duplicateEmailId')">
+            * Email Id already exists !!
+        < /span>
+    < /div>
+
+    </pre>
+</div><br />
+
+<h4 style="font-weight: bold; font-size: 14px !important;">TypeScript</h4>
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-3')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-3"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    duplicateEmailValidator(control: FormControl){
+        let email = control.value;
+        if (email && this.emailIds.includes(email)) {
+            return {
+                duplicateEmailId: { email: email }
+            }
+        } 
+        return null;
+    }
+
+    </pre>
+</div>
+<p>
+    Reactive forms and template-driven forms are the two most existing features of form methods in angular. Reactive
+    forms are easier to interact with and also easy for error handling. It helps the developers to build pretty good
+    forms. Now you Can Implement As Many Ractive & Template driven forms In Your Project As Possible.
+</p><br />
+
+<p>
+    <b>
+        As a leading web development company in India, our experts can help you if you need assistance with your web
+        development needs. Feel free to contact us.
+    </b>
+</p>

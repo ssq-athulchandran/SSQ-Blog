@@ -1,0 +1,180 @@
+<p>
+    Firebase is a fully managed backend service developed by Google. We can connect to the backend without writing any
+    code. Firebase developers to develop <b>Android</b>, <b>IOS</b>, and <b>Web apps</b>. For reporting and fixing app
+    crashes, tracking
+    analytics, and creating marketing and product experiments, firebase provides several tools. Backend-as-a-Service
+    (BaaS) provider Firebase was a YC11 startup.
+</p>
+<p>
+    It developed into a platform for developing next-generation apps on the Google Cloud Platform. A real-time database
+    called Firebase (a NoSQLjSON database) enables the storage of a list of objects in a tree. Data can be synchronized
+    between many devices. Where Realtime Database stores data within the form of a JSON, Cloud Firestore takes a way
+    more structured approach.
+</p>
+<p>
+    Firestore keeps its data inside objects. These documents contain key-value pairs and can contain any kind of data,
+    from strings to binary data to even objects that resemble JSON The documents, in turn, are grouped into collections.
+</p>
+
+<h2>Advantages of Firebase</h2>
+<ul class="ssq-blog-ul">
+    <li>Real-time Database Helps to Store Synchronize Data.</li>
+    <li>Firebase Provides a Crash Reporting Facility to Quickly Fix Bugs.</li>
+    <li>Fast and Secured Web Hosting.</li>
+    <li>Firebase Allows the Content Storage with Ease.</li>
+    <li>Send Messages and Notifications to Specific Audiences.</li>
+</ul><br />
+
+<h2>Create and Configure your Firebase Project</h2>
+<p>
+    The first step is to create a Firebase project and configure the native
+    <a href="https://sanesquare.com/services/mobile-app-development.html"
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_blank">Android/iOS</a>
+    and Flutter apps to use Firebase services.
+</p>
+<ol class="ssq-blog-ol">
+    <li>Navigate to the Firebase console.</li>
+    <li>Select Add project.</li>
+    <li>Type in the project name and click Continue.</li>
+    <li>Continue with Enable Google Analytics for this project turned on.</li>
+</ol><br />
+
+<h2>Configuring an Android app</h2>
+<p>
+    You should be able to see the project dashboard once the project has been created. To get the Android project
+    started, do the following:
+</p>
+<ul class="ssq-blog-ul">
+    <li>Select the Android icon.</li>
+    <li>In the Register section, enter the package name and SHA-1 key and then click Register app.</li>
+    <li>
+        Place the google-services.json file in the Android app directory. This is how it should look:
+        android/app/google-services.json
+    </li>
+    <li>Install the Firebase SDK as described in the Add Firebase SDK section.</li>
+    <li>Continue to the console.</li>
+</ul>
+
+<img class="ssq-blog-img" width="80%" height="auto"
+    src="https://d26dzo6cruxhup.cloudfront.net/sanesquare/firebase-with-flutter-blog-content-1.png"
+    alt="Firebase Configuration Image">
+
+<h2>Creating a Flutter project</h2>
+<p>
+    To use any Firebase service, you must first install the firebase core plugin, which allows the app to communicate
+    with Firebase.
+</p>
+
+<pre class="display-output">
+    dependencies:
+        flutter:
+            sdk: flutter
+            cupertino_icons: ^1.0.2
+            firebase_core: ^1.0.1
+</pre>
+
+<p>
+    Creating a mobile application is generally a difficult and demanding undertaking. For the development of mobile
+    applications, there are numerous frameworks available. Both iOS and Android offer native frameworks based on the
+    Java programming language. The languages Objective-C and Shift.However, we must code in two distinct languages and
+    use two different frameworks in order to create an application that supports both OSs. Mobile frameworks supporting
+    both OS exist to aid in overcoming this complication.
+</p>
+
+<p>
+    These frameworks range from straightforward hybrid mobile application frameworks built on HTML (using HTML for the
+    user interface and JavaScript for the application logic) to complicated language-specific frameworks (which handle
+    the laborious task of translating code to native code). No matter how simple or complex they are, these frameworks
+    always have a number of drawbacks.
+</p><br />
+
+<h2>Windows installation</h2>
+<p>
+    Let's look at the installation process for the Flutter SDK and its prerequisites in this section for Windows
+    systems.
+</p>
+
+<table class="ssq-blog-table no-border__data-table">
+    <tr>
+        <th style="min-width: 85px; vertical-align: baseline;">Step 1:</th>
+        <td style="border: none !important;">
+            Download the most recent Flutter SDK from the website at
+            https://flutter.dev/docs/get-started/install/windows.
+            Version 1.2.1 and the filename flutter windows
+            v1.2.1-stable.zip are current as of April 2019.
+        </td>
+    </tr>
+    <tr>
+        <th style="min-width: 85px; vertical-align: baseline;">Step 2:</th>
+        <td style="border: none !important;">In a folder, such as C:flutter, unzip the zip archive.</td>
+    </tr>
+    <tr>
+        <th style="min-width: 85px; vertical-align: baseline;">Step 3:</th>
+        <td style="border: none !important;">Add the flutter bin directory to the system path.</td>
+    </tr>
+    <tr>
+        <th style="min-width: 85px; vertical-align: baseline;">Step 4:</th>
+        <td style="border: none !important;">
+            To ensure that all requirements for flutter development are met, Flutter offers a tool called Flutter
+            Doctor.
+        </td>
+    </tr>
+
+    <tr>
+        <th style="min-width: 85px; vertical-align: baseline;">Step 5:</th>
+        <td style="border: none !important;">Running the above command will analyze the system and show its report as
+            shown below</td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <pre class="display-output" style="margin-bottom: 0;">
+            Doctor summary (to see all details, run flutter doctor -v) :
+            [√] Flutter ( Channel stable, v1.2.1, on Microsoft Windows [Version
+            10.0.17134.706], locale en-US )
+            [√] Android toolchain - develop for Android devices (Android SDK version 28.0.3)
+            [√] Android Studio (version 3.2)
+            [√] VS Code, 64-bit edition (version 1.29.1)
+            [!] Connected device
+            ! No devices are available
+            ! Doctor found issues in 1 category.
+            </pre>
+        </td>
+    </tr>
+    <tr>
+        <th style="min-width: 85px; vertical-align: baseline;">Step 6:</th>
+        <td style="border: none !important;">Install the most recent Android SDK if flutter doctor recommends it in step
+            six.</td>
+    </tr>
+    <tr>
+        <th style="min-width: 85px; vertical-align: baseline;">Step 7:</th>
+        <td style="border: none !important;">Install the most recent version of Android Studio if flutter doctor advises
+            it.</td>
+    </tr>
+    <tr>
+        <th style="min-width: 85px; vertical-align: baseline;">Step 8:</th>
+        <td style="border: none !important;">
+            Start an Android emulator or connect an actual Android device to the computer in step 8 to complete the
+            process.
+        </td>
+    </tr>
+    <tr>
+        <th style="min-width: 85px; vertical-align: baseline;">Step 9:</th>
+        <td style="border: none !important;">
+            Install the plugins for Flutter and Dart in Android Studio in step 9. It offers a startup template for new
+            Flutter applications, as well as the option to run and debug Flutter applications directly in the Android
+            Studio.
+        </td>
+    </tr>
+</table><br /> <br />
+
+<p>
+    You now have a new cross-platform development alternative, Flutter, if you are creating mobile apps using tools like
+    React Native, Phonegap, or Xamarin. At Sanesqaure Technologies, we offer the
+    <a href="https://sanesquare.com/services/web-design-and-development.html"
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_blank">
+        best services for developing mobile applications.</a>
+    If you need any assistance we are here, please chat with us.This article is a part of the series of
+    articles related to mobile technology. If you are having any query, please contact us at
+    <a href="mailto:info@sanesquare.com"
+        style="color: rgb(9, 55, 203); font-size: unset !important;">info@sanesquare.com.</a>
+</p>

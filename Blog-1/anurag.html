@@ -1,0 +1,293 @@
+<p>
+    When developing CSS at scale, it is significant to have an assimilated approach to its architecture and naming
+    conventions. Conventions can benefit the team and enhance more reliable, reusable code that can be utilized on
+    diverse projects. This also provides teams with explicit guidelines for syntax and stylistic preferences. It is
+    difficult for a team to comprehend what you have done if you don't follow any guidelines when building a custom
+    stylesheet, thus you must adhere to any methodologies. I've included some of the approaches I use below:
+</p>
+
+<table class="ssq-blog-table no-border__data-table">
+    <tr>
+        <th style="border: none !important; padding-left: 0; text-align: left; font-size: unset !important;">BEM</th>
+        <td style="border: none !important; padding-bottom: 0 !important; padding-top: 0 !important;">-</td>
+        <td style="border: none !important; padding-bottom: 0 !important; padding-top: 0 !important;">
+            Block element modifier
+        </td>
+    </tr>
+    <tr>
+        <th style="border: none !important; padding-left: 0; text-align: left; font-size: unset !important;">OOCSS</th>
+        <td style="border: none !important; padding-bottom: 0 !important; padding-top: 0 !important;">-</td>
+        <td style="border: none !important; padding-bottom: 0 !important; padding-top: 0 !important;">
+            Object-orientated CSS
+        </td>
+    </tr>
+    <tr>
+        <th style="border: none !important; padding-left: 0; text-align: left; font-size: unset !important;">SMACSS</th>
+        <td style="border: none !important; padding-bottom: 0 !important; padding-top: 0 !important;">-</td>
+        <td style="border: none !important; padding-bottom: 0 !important; padding-top: 0 !important;">
+            Scalable Modular Architecture
+        </td>
+    </tr>
+    <tr>
+        <th style="border: none !important; padding-left: 0; text-align: left; font-size: unset !important;">RSCSS</th>
+        <td style="border: none !important; padding-bottom: 0 !important; padding-top: 0 !important;">-</td>
+        <td style="border: none !important; padding-bottom: 0 !important; padding-top: 0 !important;">
+            Reasonable System for CSS Stylesheet Structure
+        </td>
+    </tr>
+    <tr>
+        <th style="border: none !important; padding-left: 0; text-align: left; font-size: unset !important;">ITCSS</th>
+        <td style="border: none !important; padding-bottom: 0 !important; padding-top: 0 !important;">-</td>
+        <td style="border: none !important; padding-bottom: 0 !important; padding-top: 0 !important;">
+            Inverted Triangle CSS
+        </td>
+    </tr>
+</table><br />
+
+<p>
+    The above principles will be explained in my next blog. but, in this article, we will talk and code about using a
+    couple of the amazing Sass features that enrich and embrace the possibilities of creating a custom bootstrap using
+    <a href="https://en.wikipedia.org/wiki/Sass_(stylesheet_language)"
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_blank">SCSS</a>
+    (Sassy Cascading Style Sheets, a more sophisticated and developed version of CSS)
+</p>
+
+<p>
+    Initializing variables in a map is the first stage in the construction of a dynamic stylesheet preprocessor
+    language.
+</p>
+
+<p>
+    All of our utilities are included in the <em><b>$utilities</b></em> map, which is later combined with any custom
+    <em><b>$utilities</b></em> maps you may have created. A keyed list of utility groups that accept the following
+    options is included in the utility map:
+</p>
+
+<p>
+    <strong>Property: </strong>
+    The name of the property may be a string or an array of strings (e.g., horizontal paddings or margins).
+</p>
+
+<p>
+    <strong>Values: </strong>
+    List of values, or a map if you don't want the value's class name to match it. The map is not compiled if the key is
+    null.
+</p>
+
+<p>
+    <strong>Class: </strong>
+    If the class name shouldn't be the same as the property name, use a variable. The class name will be the first entry
+    of the property array if you don't supply the class key and the property key is an array of strings.
+</p>
+
+<h3 style="font-size: 18px !important; margin-top: 20px !important;">
+    <em>Each set of utilities resembles the following: </em>
+</h3>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    $utilities:( 
+        opacity: ( 
+            property: opacity,
+            class: o,
+            values: ( "0": 0, "25": .25, "50": .5, "75": .75, "100": 1 )  
+        ),
+    ); 
+    </pre>
+</div><br />
+<p style="margin-bottom: 5px !important;">
+    <em>a larger map appears as follows: </em>
+</p>
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-1')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-1"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    $utilities:( 
+        opacity: ( 
+            property: opacity,
+            class: o,
+            values: ( "0": 0, "25": .25, "50": .5, "75": .75, "100": 1 )  
+        ),
+        self-align: (
+            property:align-self,
+            class: align-self,
+            values: ( 
+                "baseline":baseline, "center":center, "flex-end":flex-end, 
+                "flex-start":flex-start, "self-end":self-end, "self-start":self-start, 
+                "unset":unset 
+            )
+        ),
+        v-align: (
+            property: vertical-align,
+            class: v-align,
+            values: ('middle':middle, 'top':top, 'bottom':bottom)
+        ),
+        ........
+        ........
+    );        
+    </pre>
+</div><br />
+
+
+<p>
+    The @mixin allows you to create CSS code that can be reused throughout the website.
+</p>
+
+<p>
+    For generating custom classes we use @mixin. Any Sass identifier may be used as the name of a mixin, and statements
+    other than top-level statements may be contained within it. You can write CSS that will be used repeatedly on a
+    website using the @mixin directive. They can include style rules of their own that can be nested in other rules or
+    added at the top level of the stylesheet, or they can merely be used to edit variables. Several styles can be
+    encapsulated in a single style rule.
+</p><br />
+
+<p style="margin-bottom: 5px !important;">This is how our dynamic class generation method looks.</p>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-2')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-2"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    @mixin css-modifier( $prefix, $separator ) {
+        @each $key, $util in $utilities { //looping the $utilities map
+            $values: map-get($util, "values"); // assigining values to $values
+            $properties:map-get($util, "property"); // assigining property to $properties
+            &#{$prefix}#{map-get($util, "class")} {
+                @each $key, $val in $values { //iterating values
+                    &#{$separator}#{$key} {
+                        #{map-get($util, "property")}:$val; // the actual property and value
+                    }
+                }
+            }
+        }
+    }    
+    </pre>
+</div><br />
+
+<p>
+    If you want the same values for other properties, you must alter the property option as a map in a similar manner.
+</p>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-3')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-3"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    $utilities:( 
+        ........
+        ........
+    
+        ),
+        attributes: (
+            property: ("h":height,"w":width),
+            values: ('full':100%, 'auto':auto, 'max-content':max-content)
+        ),
+        ........
+        ........
+    ); 
+    </pre>
+</div><br />
+
+<p style="margin-bottom: 5px !important;">Now change the @mixin code block in your file as follows:</p>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-4')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-4"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    @mixin css-modifier( $prefix, $separator ) {
+        @each $key, $util in $utilities {
+            $values: map-get($util, "values");
+            $properties:map-get($util, "property");
+            @if type-of($properties) == 'map' {
+                @each $class, $prop in $properties {
+                    &#{$prefix}#{$class} {
+                        @each $key, $val in $values {
+                            &#{$separator}#{$key} {
+                                $prop:$val;
+                            }
+                        }
+                    }
+                }
+            } 
+            @else {
+                &#{$prefix}#{map-get($util, "class")} {
+                    @each $key, $val in $values {
+                        &#{$separator}#{$key} {
+                            #{map-get($util, "property")}:$val;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    </pre>
+</div><br />
+
+<p>
+    To observe the magic of output, you must finally declare a class in the name of your website and include
+    css-modifier inside of it. Suppose the website's name is sanesquare(SSQ). Then:
+</p>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-5')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-5"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    .ssq {
+        @include css-modifier('-', '-') 
+    }
+    </pre>
+</div><br />
+
+<p style="margin-bottom: 5px !important;">Which outputs the following:</p>
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-6')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-6"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    .ssq-align-self-baseline { align-self:baseline; }
+    .ssq-align-self-center { align-self:center; }
+    .ssq-align-self-flex-start { align-self:flex-start; }
+    .ssq-align-self-flex-end{ align-self:flex-end; }
+    .ssq-align-self-unset { align-self:unset; }
+    .........
+    ...........
+
+</pre>
+</div><br />
+
+<p style="margin-bottom: 5px !important;">the input was,</p>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-7')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-7"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    self-align: (
+        property:align-self,
+        class: align-self,
+        values: ( 
+            "baseline":baseline, "center":center, "flex-end":flex-end, 
+            "flex-start":flex-start, "self-end":self-end, "self-start":self-start, 
+            "unset":unset 
+        )
+    ),
+    </pre>
+</div><br /> <br />
+
+
+<p>
+    <b>
+        In this blog, I've described the basic aspects of the <a
+            href="https://sanesquare.com/services/ui-ux-design.html"
+            style="color: rgb(9, 55, 203); font-size: unset !important;" target="_self">Bootstrap framework </a>
+        without using any JavaScript to represent the dynamic creation of classes. Numerous capabilities of SCSS enable
+        the development of top-notch web applications. I believe that many front-end developers, especially beginners,
+        will find this blog helpful for making their unique bootstrap.
+    </b>
+</p>

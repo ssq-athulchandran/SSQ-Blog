@@ -1,0 +1,240 @@
+<p>
+    Any current application must have internationalization which is a compulsory feature. The I18n, often known as
+    internationalization, is the process of adding multiple language support to our app to increase its accessibility to
+    a wider audience.The application can now target any language in the world thanks to internationalization.
+</p>
+<p>
+    Translation of the application into a specific language is called localization. The app requires to be
+    internationalized before it can be localized. An application to render in a specific local language. Angular
+    provides full approval for the localization and internationalization features.
+</p>
+<br />
+
+<h3 style="font-size: 18px !important;">To add the package to your application, use the command shown below:</h3>
+<p style="font-size: 14px !important; padding-left: 10px; margin: 20px 0px;">
+    <em>npm install @ngx-translate/core@13.0.0</em>
+</p>
+<p>
+    Include your translation files as assets and load them to use the
+    <a href="https://github.com/ngx-translate/http-loader" style="color: rgb(9, 55, 203);font-size: unset !important;"
+        target="_blank">TranslateHttpLoader</a>, which is available in a
+    separate npm package, is probably the most popular method for loading translations.
+</p>
+
+<p style="font-size: 14px !important; padding-left: 10px; margin: 20px 0px;">
+    <em>npm install @ngx-translate/http-loader@6.0.0</em>
+</p>
+
+<h3 style="font-size: 18px !important;">Now import the TranslateModule in your AppModule:</h3><br />
+<h4 style="font-size: 14px !important; font-weight: bold;">src/app/app.module.ts</h4>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    import { NgModule } from '@angular/core';
+    import { BrowserModule } from '@angular/platform-browser';
+    import { HttpClientModule, HttpClient } from '@angular/common/http';
+    import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+    import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+    import { AppComponent } from './app.component';
+    export function HttpLoaderFactory(http: HttpClient) {
+        return new TranslateHttpLoader(http);
+    }
+    @NgModule({
+        declarations: [ AppComponent ],
+        imports: [
+            BrowserModule,
+            HttpClientModule,
+            TranslateModule.forRoot({
+                loader: {
+                    provide: TranslateLoader,
+                    useFactory: HttpLoaderFactory,
+                    deps: [HttpClient]
+                }
+            })
+        ],
+        providers: [],
+        bootstrap: [AppComponent]
+    })
+    export class AppModule { }
+
+    </pre>
+</div>
+
+<h2>Using Translation Files</h2>
+<p>
+    The /assets/i18n/ folder of your project must contain a folder named "lang.json," where "lang" denotes the language
+    of the file you are using for translations. This is required to generate the translation loader. For English, this
+    file might be titled en.json, for instance.
+</p>
+<p>
+    The translated text is stored in the translation file as a
+    <a href="https://www.w3schools.com/js/js_json_intro.asp" style="color: rgb(9, 55, 203);font-size: unset !important;"
+        target="_blank">JSON</a>
+    object with key-value pairs, where the key
+    identifies the translated text and the value is the translated text in the language specified in the file.
+</p><br />
+<h4 style="font-size: 14px !important; font-weight: bold;">src/assets/i18n/en.json</h4>
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-1')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-1"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    {
+        "welcomeMessage": "Thanks for joining, {{ firstName }}! It's great to have you!",
+        "login": {
+            "username": "Enter your user name",
+            "password": "Password here"
+        }
+    }            
+
+    </pre>
+</div>
+<p>
+    You can organize your translations as you want by using the value, which can also be another object. Double curly
+    brackets around a variable name in the text of your translation value can also be used to later interpolate strings
+    dynamically into your translations.
+</p><br />
+
+<h2>Accessing Translations</h2>
+<p>
+    You should initialize just a few properties in the TranslateService before your
+    <a href="https://sanesquare.com/" style="color: rgb(9, 55, 203);font-size: unset !important;"
+        target="_self">application</a>
+    can access these translations. It should probably be done in your bootstrapped AppComponent.
+</p><br />
+
+<h4 style="font-size: 14px !important; font-weight: bold;">src/app/app.component.ts</h4>
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-2')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-2"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    import { Component } from '@angular/core';
+    import { TranslateService } from '@ngx-translate/core';
+    @Component({
+        selector: 'app-root',
+        templateUrl: './app.component.html',
+        styleUrls: ['./app.component.css']
+    })
+    export class AppComponent {
+        constructor(translate: TranslateService) {
+            translate.addLangs(['en', 'klingon']);
+            translate.setDefaultLang('en');
+            translate.use('en');
+        }
+    }
+
+    </pre>
+</div><br />
+
+<p>
+    Start by translating. The service is informed which languages are available to use for translations by addLangs([]).
+</p>
+<p>
+    You can specify a backup set of translations to utilize in the event that the current language's translations are
+    not available by using the translate.setDefaultLang('en') method. The method translate.use('en') instructs the
+    service to translate in the current language.
+</p>
+<p>
+    The language you wish to use for all of these is the parameter, and it should be the same as the names of the JSON
+    files that define the translations for those languages.
+</p><br />
+
+<h2>Using TranslateService</h2>
+<p>Using the service, there are two methods to get your translations.</p>
+<h3 style="font-size: 18px !important; margin-bottom: 0 !important;">The first, and recommended, method is to use:</h3>
+<p style="font-size: 14px !important; padding-left: 10px; margin: 20px 0px;">
+    <em>get(key: string|Array< string>, interpolateParams?: Object)`</em>
+</p>
+<h3 style="font-size: 18px !important; margin-bottom: 0 !important;">The second method is to use:</h3>
+<p style="font-size: 14px !important; padding-left: 10px; margin: 20px 0px;">
+    <em>instant(key: string|Array< string>, interpolateParams?: Object)`</em>
+    </p>
+<p>
+    Remember, we told the service to use en as the current lang, so all translation results will come from en.json
+    initially.
+</p><br />
+
+<h4 style="font-size: 14px !important; font-weight: bold;">src/app/app.component.ts</h4>
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-3')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-3"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    import { Component } from '@angular/core';
+    import { TranslateService } from '@ngx-translate/core';
+    @Component({
+        selector: 'app-root',
+        templateUrl: './app.component.html',
+        styleUrls: ['./app.component.css']
+    })
+    export class AppComponent {
+        user!: { firstName: string; lastName: string; };
+        welcome!: string;
+        usernameLabel!: string;
+        passwordLabel!: string;
+        constructor(translate: TranslateService) {
+            translate.addLangs(['en', 'klingon']);
+            translate.setDefaultLang('en');
+            translate.use('en');
+        }
+        
+        ngOnInit() {
+            // hardcoded example
+            this.user = { firstName: 'Sammy', lastName: 'Shark' };
+            // synchronous. Also interpolate the 'firstName' parameter with a value.
+            this.welcome = this.translate.instant('welcomeMessage', { firstName: this.user.firstName });
+            // asynchronous - gets translations then completes.
+            this.translate.get(['login.username', 'login.password'])
+            .subscribe(translations => {
+                this.usernameLabel = translations['login.username'];
+                this.passwordLabel = translations['login.password'];
+            });
+        }
+    }
+                  
+    </pre>
+</div>
+<p>
+    The use(lang: string) function on the TranslateService can be called to set the current language, whether through a
+    pick box, URL route, or other way. You can also build your own mechanism in your application to switch between
+    languages.
+</p><br />
+
+<h2>Using TranslatePipe</h2>
+<p>
+    The key to the translation you need is the input into the pipe. An object that defines any interpolation strings
+    that the translation is expecting is the optional parameter.
+</p><br />
+
+<h4 style="font-size: 14px !important; font-weight: bold;">src/app/app.component.html</h4>
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-4')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-4"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    < p> {{ 'welcomeMessage' | translate: user }} < /p>
+    < input type="password" placeholder=" {{ 'login.password' | translate }} ">
+        
+    </pre>
+</div>
+<p>
+    In this blog, we learned how to use i18n tools to internationalize our Angular app. Localization was also used in
+    our Angular application. We can extend the reach of our app to a worldwide audience by serving our app in a
+    different language.
+</p><br /><br />
+
+
+<p>
+    <b>
+        As a leading Angular application company at Sanesquare Technologies, We offer exceptional
+        <a href="https://sanesquare.com/services/web-design-and-development.html"
+            style="color: rgb(9, 55, 203);font-size: unset !important;" target="_self">
+            Angular Application Development Services</a>
+        to meet our client's requirements. If you need assistance or have queries, feel free to
+        contact us.
+    </b>
+</p>
