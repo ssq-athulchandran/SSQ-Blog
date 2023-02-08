@@ -1,0 +1,284 @@
+<p>
+    How can we create web applications with Java? According to Stack Overflow and Statista, Java is one of the most
+    commonly used programming languages ​​for building web applications. As most of you probably already know, Java is a
+    high-level, object-oriented, class-based programming language. It is built with minimal dependencies. After more
+    than two decades of release, Java is still loved by programmers.
+</p>
+<p>
+    Since Java applications are compiled in bytecode, they can run on any <a
+        href="https://en.wikipedia.org/wiki/Java_virtual_machine"
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_blank">JVM (Java Virtual Machine)</a>
+    regardless of the operating system and the architecture of the computer system, thus ensuring portability.
+    Additionally, Java provides Servlet and JSP technologies that help developers easily build and deploy web
+    applications on the server. Like other languages, Java also has frameworks like Spring and Hibernate to simplify the
+    web application development process.
+</p>
+
+<h2>What is a Web Application?</h2>
+<p>
+    Software programs that can be accessed using any web browser are called Web applications. Typically, the front end
+    of web software is created using scripting languages ​​such as HTML, CSS, and JavaScript, which are supported by
+    almost all web browsers. In contrast, the backend is created using any programming language such as Java, Python,
+    Php and a database. Unlike device-based apps, there is no specific device to build internet apps; we can use any
+    supported IDE to create web applications.
+</p>
+<p>
+    Let's look at the technical terms we need to be familiar with before <a
+        href="https://sanesquare.com/services/web-design-and-development.html"
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_self">developing Java web
+        applications.</a>
+</p>
+
+<h2>Defining Java Web Application Technologies</h2>
+<p>
+    Before developing any web application it is necessary to set up Java, IDE for writing code, Server <a
+        href="https://tomcat.apache.org/" style="color: rgb(9, 55, 203); font-size: unset !important;"
+        target="_blank">(Tomcat)</a> as web container for Servlet, and Database (MySQL or Oracle) on your gadget
+    properly.
+</p>
+<h4>
+    <strong>1. Java IDE</strong>
+</h4>
+<p>
+    A Java IDE is an integrated development environment for Java programming; many also provide functionality for other
+    languages, and an IDE typically provides a code editor, compiler or interpreter, and debugger that developers access
+    through a unified Graphical <a href="https://en.wikipedia.org/wiki/Graphical_user_interface"
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_blank">User Interface (GUI)</a>.
+</p>
+
+<h4>
+    <strong>2. Java Servlet API</strong>
+</h4>
+<p>
+    Servlets provide URL mapping and request handling functionality in your Java web applications. They are used to
+    handle requests received from the web server, process the request, render the response, and send the response back
+    to the web server. In Java, we use servlets to create web applications.
+</p>
+
+<h4>
+    <strong>3. JavaServer Pages(JSP)</strong>
+</h4>
+<p>
+    Java Server Pages or JSP is a technical specialty that simplifies the development of dynamic web applications. It
+    also allows developers to simultaneously add servlet code snippets to text documents. JSP consists of static facts
+    that can be expressed in plain text format and JSP factors that determine how a web page creates dynamic content.
+</p>
+
+<h4>
+    <strong>4. JSP Standard Tag Library</strong>
+</h4>
+<p>
+    JSTL stands for JSP Standard Tag Library. JSTL is a standard tag library that provides tags that control the
+    behavior of JSP pages. JSTL tags can be used for iterations and control statements, internationalization, SQL, etc.
+</p>
+
+<h4>
+    <strong>5. JavaServer Faces</strong>
+</h4>
+<p>
+    JavaServer Faces or Jakarta Server Faces technology consists of a set of APIs for marking up user interface
+    components and managing their state, and a JSP custom tag library for expressing JSF interfaces in JSP pages. Java
+    Server Faces is designed to be flexible, taking advantage of current web and user interface standards, without
+    restricting developers to a certain protocol, system or language.
+</p>
+
+<h4>
+    <strong>6. JDBC API</strong>
+</h4>
+<p>
+    The Java Database Connectivity (JDBC) API provides generic data access. Using the JDBC API, developers can access
+    any source of information, from spreadsheets to relational databases and flat files. Java uses two packages java.sql
+    and javax.sql to connect, manipulate and receive records from databases.
+</p>
+
+<h4>
+    <strong>7. Java Persistence API</strong>
+</h4>
+<p>
+    The Java Persistence API provides an object-to-relational mapping tool to help developers manage relational data in
+    Java web applications. JPA internally defines object-relational mapping and standardizes these mapped objects using
+    XML or annotations to map objects into database tables.
+</p>
+
+<h2>How to Create a Web Application using Java?</h2>
+<p>
+    Before developing a web application, Java, IDE to write code (Eclipse or Netbeans), server (Tomcat) as web container
+    for servlets and database (MySQL or Oracle) should be properly configured on your machine.
+</p>
+<p>
+    Tomcat can be configured with Eclipse to facilitate application development and deployment. In Eclipse Preferences,
+    select Server Runtime Environments and find your Tomcat server version. For the runtime environment, specify the
+    apache tomcat directory location and JRE information. Create a server with useful resources to access the server
+    interface. That's it, we are ready to create and run our first servlet on the Tomcat server.
+</p>
+<p>
+    Now open the Eclipse IDE and select <strong>File > New > Dynamic Web Project.</strong> Enter the project name
+    <strong>FirstServletProject</strong>, use the default project location, then <strong>click Next</strong>, check
+    Generate web.xml deployment descriptor and <strong>click the Finish</strong> button.
+</p>
+<p>
+    Now to create the servlet, select <strong>File > New > Servlet</strong> and <strong>click the Finish</strong>
+    button, this will
+    generate the skeleton code for the servlet.
+</p>
+<p>
+    Once the servlet is created, you can add HTML using the GET method to invoke the HTTP request shown below and run
+    the servlet.
+</p>
+
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    package com.journaldev.first;
+
+    import java.io.I0Exception;
+    import java.o.PrintWriter;
+    import java.util.Date;
+
+    import javax.servlet.ServletException;
+    import javax.servlet.annotation.WebInitParam;
+    import javax.servlet.annotation.WebServlet;
+    import javax.servlet.http.HttpServlet;
+    import javax.servlet.http.HttpServletRequest;
+    import javax.servlet.http.HttpServletResponse;
+    
+    /**
+        * Servlet implementation class FirstServlet
+    */
+
+    @WebServlet (description = "My First Servlet", urlPatterns = {"
+        /FirstServlet" , "/FirstServlet. do"), initParams =
+        {@webInitParam(name="id" , value="") ,@webInitParam(name="name"
+        „value= "ABC" )})
+
+    public class FirstServlet extends HttpServlet {
+        private static final long serialVersionUID = 1L;
+        public static final String HTML_START = " < html>< body>";
+        public static final String HTML_END = "</ body></ html>";
+
+        /**
+        * @see HttpServlet#HttpServlet)
+        */
+
+        public FirstServlet ) {
+            super ();
+            // TODO Auto-generated constructor stub
+        }
+
+        /** 
+        * @see HttpServlet#doGet (HttpServletRequest request,
+            HttpServletResponse response)
+        */
+
+        protected void doGet(HttpServletRequest request,
+        HttpServletResponse response) throws ServletException,
+        IOException {
+            PrintWriter out = response.getWriter();
+            Date date = new Date();
+            out.println(HTML_START + "< h2>Hi There!</ h2>< br/>< h3>Date="
+                +date +"</ h3>" + HTML_END) ;
+        }
+
+        /**
+        * @see HttpServlet#doPost(HttpServletRequest request,
+            HttpServletResponse response)
+        */
+
+        protected void doPost(HttpServletRequest request,
+            HttpServletResponse response) throws ServletException
+        IOException {
+                // TODO Auto-generated method stub
+            }
+        }
+    }
+    </pre>
+</div><br />
+
+<p>
+    Now, while running our servlet, several errors are shown because the servlet-api jar file is not added. So we will
+    add the jar file by right clicking on the project and then going to <strong>Build Path > Set Build Path > Add
+        External JAR</strong> option.
+</p>
+<p>
+    From here you can navigate to the directory where the server is installed, select the servlet-api.jar file, click
+    Open to continue, then Apply and Close to add the jar file to the project.
+</p>
+<img src="https://d26dzo6cruxhup.cloudfront.net/sanesquare/web-app-using-java-blog-content-1.png" class="ssq-blog-img"
+    width="80%" height="auto" alt="Java Build Path">
+
+<p>
+    Although servlets are a good choice at first, they are difficult to inspect and maintain large responses containing
+    dynamic data. It is for this reason that JSP was introduced. The JSP technology is also server-side and has the same
+    characteristics as HTML, but it can also add dynamic content if needed. Because JSP is similar to HTML, it is easy
+    to write and suitable for presenting data.
+</p>
+<p>Using the JSP code in the code below, we get the same result as the servlet code.</p>
+<div class="ssq-blog-clipboard">
+    <button onclick="copyToClipboard('session-id-1')" class="fa fa-copy ssq-blog-text-copier"></button>
+    <pre id="session-id-1"
+        style="page-break-inside: avoid; display: block; font-size: 14px; line-height: 20px; word-break: break-all; word-wrap: break-word; width: 100%; overflow-x: scroll; background-color: #091517; border: 1px solid rgba(0, 0, 0, 1); -moz-border-radius: 2px; border-radius: 3px; color: #83f9fbff;padding:0;">
+
+    <%@page import="java.util.Date"%>
+    <%@page language="java" contentType=-"text/html; charset=US-ASCIT" pageEncoding="US-ASCII"%> < br />
+    <! DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "https://www.w3.org/TR/html4/loose.dtd">
+    < html>
+        < head>
+            < meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+            < title>Hello</title>
+        </ head>
+        < body>
+            < h2>Hi There!</ h2>< br />
+            < h3>Date=<%= new Date() %></ h3>
+        </ body>
+    </ html>
+    </pre>
+</div><br />
+<p>
+    To run the app, you need to <strong>right-click</strong> on the project and select <strong>Run-> Run on
+        Server</strong> option to run it on the server.
+</p>
+
+<img src="https://d26dzo6cruxhup.cloudfront.net/sanesquare/web-app-using-java-blog-content-2.png" class="ssq-blog-img"
+    width="80%" height="auto" alt="Run the Project">
+<p>
+    Loading the application will take some time. But when using a JSP or Servlet file, the output will be the same:
+    "Hello!" with date and time.
+</p>
+
+<img src="https://d26dzo6cruxhup.cloudfront.net/sanesquare/web-app-using-java-blog-content-3.png" class="ssq-blog-img"
+    width="80%" height="auto" alt="Project Output">
+<p>
+    In this section, I mentioned how to create web applications using Java Servlets. Java makes this possible through
+    different frameworks like Spring and Spring Boot which help us to boost web applications easily. These frameworks
+    limit the workload of the developer.
+</p>
+
+<h2>Why Choose Sanesquare for Web Application Development?</h2>
+<p>
+    If you want the Best Web application for your company, you are in the correct place. Because Sanesquare Technologies
+    provides the best services for web development, and for the following reason Sanesquare is the best choice for
+    developing web applications.
+</p>
+<ul class="ssq-blog-ul">
+    <li>Created the best by the experts</li>
+    <li>On time delivery</li>
+    <li>Complete Web Development Process with Support and Maintenance</li>
+</ul>
+<p>
+    In conclusion, building a web application using Java involves several steps, including setting up the development
+    environment, defining the architecture, and choosing the appropriate framework. Java provides a rich set of
+    libraries and frameworks that make it easy to develop web applications that are scalable, secure, and reliable. The
+    choice of framework will depend on the specific requirements of the application and the development team's
+    expertise. Regardless of the framework, Java web applications can be developed quickly and efficiently, making it an
+    excellent choice for both small and large projects.
+</p>
+
+<p>
+    <strong>
+        As one of the <a href="https://sanesquare.com/" style="color: rgb(9, 55, 203); font-size: unset !important;"
+            target="_self">leading Web Application Development Companies in India</a>, we can help you to develop a web
+        application for your business. If you need more information, do not hesitate to reach out to us.
+    </strong>
+</p>
