@@ -1,0 +1,167 @@
+<p>
+    Smoke Testing is an important aspect of <a href="https://sanesquare.com/services/custom-software-development.html"
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_self">Software Development</a> that
+    ensures the quality and functionality of a
+    software application. It is a quick and simple test that verifies a software's basic functionality to ensure that
+    the most critical features are working correctly. The primary goal of smoke testing is to detect major flaws early
+    in the development process, saving time and resources that would otherwise be spent on resolving these issues. Smoke
+    testing improves overall software quality by catching these defects early.
+</p>
+
+<h2>When are Smoke Tests Performed?</h2>
+<p>
+    The technique of Smoke Testing ensures that the build that was received from the development team may be tested.
+    When the build is a release candidate, it can also be run as part of the build process alongside a more in-depth
+    test. Once the database and <a href="https://en.wikipedia.org/wiki/Graphical_user_interface"
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_self">GUI interface</a> is stable, work
+    can begin. Additionally, when new fundamental functionality is included in a system, smoke testing is frequently
+    carried out. But unlike unit or regression testing, this test is not exhaustive.
+</p>
+<p>
+    When working on a module, a smoke test may not always be sufficient to thoroughly test a change, especially when
+    employing new code. Every build includes a smoke test, but this does not absolve developers of the duty to test
+    their modifications before submitting them to the repository. A manual smoke test should be performed by developers
+    before a change is committed.
+</p>
+
+<h2>Procedure for Smoke Testing</h2>
+<p>
+    Designing test cases is not necessary for smoke testing. All that is required is to select the necessary test cases
+    from those that have already been designed. Smoke Testing, as previously stated, focuses on core application
+    workflow, so we select test case suits that cover the application's most important features. The number of test
+    cases should be kept to a minimum and the execution time should not exceed 30 minutes.
+</p>
+
+<h3>Smoke Testing Characteristics</h3>
+<p>Runs rapidly (the exact definition of "rapidly" depends on the circumstance).</p>
+<ul class="ssq-blog-ul">
+    <li style="padding-bottom: 5px !important;">Self-scoring is possible, as it should be for any automated test.</li>
+    <li style="padding-bottom: 5px !important;">Comprehensive system coverage is provided.</li>
+    <li style="padding-bottom: 5px !important;">Can be managed by developers and included in the quality control
+        process.</li>
+    <li style="padding-bottom: 5px !important;">Exposes common mistakes in a fresh build, but it doesn't have to be
+        complete.</li>
+</ul>
+
+<h3>Positive Aspects of Smoke Testing</h3>
+<ul class="ssq-blog-ul">
+    <li style="padding-bottom: 5px !important;">Early testing stage bug discovery is aided by this.</li>
+    <li style="padding-bottom: 5px !important;">It aids in identifying problems brought on by the integration of
+        components.</li>
+    <li style="padding-bottom: 5px !important;">It aids in confirming that the bugs corrected in the previous build DO
+        NOT affect the application's core functions.</li>
+    <li style="padding-bottom: 5px !important;">In order to conduct the smoke testing, a very small number of test cases
+        are needed.</li>
+    <li style="padding-bottom: 5px !important;">Smoke testing can be completed quickly.</li>
+</ul>
+
+<h3>Negative Aspects of Smoke Testing</h3>
+<ul class="ssq-blog-ul">
+    <li style="padding-bottom: 5px !important;">The thorough examination is not covered by smoke testing.</li>
+    <li style="padding-bottom: 5px !important;">Due to the limited amount of test cases and non-exhaustive testing, we
+        were unable to identify any other critical flaws.</li>
+</ul>
+
+
+<h2>Types of Smoke Test</h2>
+<p>
+    Smoke testing is an important part of software development because it ensures the quality and functionality of a <a
+        href="https://sanesquare.com/services/web-design-and-development.html"
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_self">web application</a>. There are
+    various types of smoke tests, each with its own set of needs and requirements. The following are some of the most
+    common types of smoke tests.
+</p>
+
+<h4>
+    <strong>1. Build Verification Test (BVT)</strong>
+</h4>
+<p>
+    A build Verification Test is performed after a software build is complete and is designed to verify that the build
+    is stable and ready for further testing.
+</p>
+
+<h4>
+    <strong>2. Build Acceptance Test (BAT)</strong>
+</h4>
+<p>
+    The build Acceptance Test is performed by the customer or end-user to verify that the software meets their
+    requirements and is acceptable for use.
+</p>
+
+<h4>
+    <strong>3. Component Test</strong>
+</h4>
+<p>
+    Component Test is performed on individual components of the software, such as a specific module or function, to
+    verify that they work correctly.
+</p>
+
+<h4>
+    <strong>4. End-to-End Test </strong>
+</h4>
+<p>
+    End-to-End Test is performed on the entire software system to verify that all components are working together
+    correctly.
+</p>
+
+<h4>
+    <strong>5. Regression Test</strong>
+</h4>
+<p>
+    A Regression Test is performed after changes have been made to the software to verify that the changes have not
+    broken any existing functionalities.
+</p>
+
+<h4>
+    <strong>6. User Acceptance Test (UAT)</strong>
+</h4>
+<p>
+    User Acceptance Test is performed by end-users to verify that the software meets their requirements and is suitable
+    for use in real-world scenarios.
+</p>
+
+<h2>Important Distinction Between Sanity and Smoke Test</h2>
+<ul class="ssq-blog-ul">
+    <li>
+        Sanity testing seeks to validate "rationality," whereas smoke testing seeks to validate "stability."
+    </li>
+    <li>
+        Developers and testers can both perform Smoke Testing while testers perform Sanity Testing.
+    </li>
+    <li>
+        Sanity testing validates new functionality, such as bug fixes, whereas smoke testing validates the system's
+        critical functionalities.
+    </li>
+    <li>
+        While Sanity testing is a subset of Regression Testing, Smoke testing is a subset of Acceptance Testing.
+    </li>
+    <li>
+        Sanity testing is not programmed or recorded, whereas smoke testing is.
+    </li>
+    <li>
+        Sanity testing only validates a single element, whereas smoke testing validates the whole system from beginning
+        to end.
+    </li>
+</ul>
+<p>
+    Smoke Testing should always be carried out on every build in software engineering since it aids in the early
+    detection of issues. The software build must complete a smoke test activity before moving on to the system stage.
+    Every build that is put through testing must pass a smoke test. This holds for both major and minor system releases
+    as well as new development.
+</p>
+
+<p>
+    The <a href="https://www.sanesquare.com/services/staff-augmentation/hire-qa-analyst.html"
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_self">QA team</a> must confirm that the
+    application under test is running on the correct build version before beginning smoke testing. Testing the
+    application's stability is an easy operation that takes very little time. Smoke tests can save test effort while
+    enhancing the application's quality. Depending on the customer and the business, smoke testing can be done manually
+    or automatically.
+</p>
+
+<p>
+    Hope this blog was helpful to you. We, at <a href="https://www.sanesquare.com/contact-us.html"
+        style="color: rgb(9, 55, 203); font-size: unset !important;" target="_self">Sanesquare Technologies</a>, have a
+    team of experienced and skilled testers who can help you get through your doubts and questions, feel free to seek
+    our team at sanesquare.
+</p>
