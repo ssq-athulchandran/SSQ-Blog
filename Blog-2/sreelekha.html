@@ -51,13 +51,13 @@
 
 <p>
     Whenever we hit an invalid URL, we have to get this NoPageComponent component <br />
-    Now, let’s go to the app-routing.module.ts
+    Now, let's go to the app-routing.module.ts
 </p>
 <img class="ssq-blog-img" src="https://d26dzo6cruxhup.cloudfront.net/sanesquare/404-angular-blog-content-3.png"
     alt="App Routing Module file" width="80%" height="auto" style="margin-top: 5px !important;">
 
 <p>
-    Let’s write the new route as the last route and import the new component named NoPageComponent as follows:
+    Let's write the new route as the last route and import the new component named NoPageComponent as follows:
 </p>
 <p>
     <strong>
@@ -116,7 +116,7 @@
 </div><br />
 
 <p>
-    Here ’**’ specifies whenever any route will not be matched from the routing module, this NoPageComponent will load
+    Here '**' specifies whenever any route will not be matched from the routing module, this NoPageComponent will load
     automatically which is called the
     <a href="https://dotnettutorials.net/lesson/wildcard-route-angular/#:~:text=What%20is%20Wildcard%20Route%20in,found%20error%20page%20is%20displayed."
         style="color: rgb(9, 55, 203); font-size: unset !important;" target="_blank">Wild Card Route</a>
@@ -124,7 +124,7 @@
     route, this wild card route should always be the last.
 </p>
 <p>
-    That’s because this route matches every route path which the user will enter in the URL bar. If I move this route to
+    That's because this route matches every route path which the user will enter in the URL bar. If I move this route to
     the top and then load this application we will see this page not found view for every route URL. Because whatever
     path we enter inside the address bar that path will match this “**” and when it matches then it will not check for
     other routes. So the wild card route should always be the last.
@@ -145,7 +145,7 @@
     over it, this NoPageComponent will load.
 </p>
 <p>
-    Let me add some texts to this NoPageComponent view template. Here let’s add one h1 element which says “Opps !!! Page
+    Let me add some texts to this NoPageComponent view template. Here let's add one h1 element which says “Opps !!! Page
     Not Found” and let also add one more element as h2, some message to the visitor of this website like “Go to Home
     Page or any other valid route”.
 </p>
